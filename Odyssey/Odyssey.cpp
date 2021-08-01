@@ -1,5 +1,7 @@
-﻿// Odyssey.cpp : Defines the entry point for the application.
-//
+﻿/**
+ * The Untitled Adventure / Odyssey
+ * Copyright (c) 2021 Joshua Farr (josh@farrcraft.com)
+**/
 
 #include <SDL.h>
 

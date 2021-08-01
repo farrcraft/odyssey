@@ -1,5 +1,7 @@
-﻿// Odyssey.h : Include file for standard system include files,
-// or project specific include files.
+﻿/**
+ * The Untitled Adventure / Odyssey
+ * Copyright(c) 2021 Joshua Farr(josh@farrcraft.com)
+**/
 
 #pragma once
 
