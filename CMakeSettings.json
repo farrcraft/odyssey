@@ -9,7 +9,8 @@
       "installRoot": "${projectDir}\\out\\install\\${name}",
       "cmakeCommandArgs": "",
       "buildCommandArgs": "",
-      "ctestCommandArgs": ""
+      "ctestCommandArgs": "",
+      "cmakeExecutable": "C:/Users/sigsegv/source/repos/Odyssey/vendor/cmake-3.21.1-windows-x86_64/bin/cmake.exe"
     }
   ]
 }
