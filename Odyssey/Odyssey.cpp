@@ -13,9 +13,8 @@ const int SCREEN_WIDTH = 800;
 const int SCREEN_HEIGHT = 600;
 
 /**
-**/
-int main(int argc, char* argv[])
-{
+ **/
+int main(int argc, char* argv[]) {
 	Engine engine;
 	if (!engine.initialize()) {
 		return -1;
