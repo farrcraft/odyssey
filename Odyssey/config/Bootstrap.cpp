@@ -10,7 +10,7 @@
 
 /**
  **/
-bool Bootstrap::load() {
+bool Bootstrap::load(Logger *logger) {
     try {
         JsonFile file("bootstrap.json", "r");
         boost::json::stream_parser parser;
@@ -31,9 +31,7 @@ bool Bootstrap::load() {
         auto const document = parser.release();
     }
     catch (std::exception const& e) {
-        std::cerr <<
-            "Caught exception: "
-            << e.what() << std::endl;
+        BOOST_LOG_SEV(logger->get(), boost::log::trivial::error) << "Caught exception: " << e.what() << std::endl;
         return false;
     }
 

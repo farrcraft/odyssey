@@ -1,7 +1,7 @@
 ﻿/**
  * The Untitled Adventure / Odyssey
  * Copyright (c) 2021 Joshua Farr (josh@farrcraft.com)
-**/
+ **/
 
 #include <SDL.h>
 
@@ -20,7 +20,7 @@ int main(int argc, char* argv[]) {
 		return -1;
 	}
 
-	Window window;
+	Window window(engine.logger());
 	if (!window.create()) {
 		return -1;
 	}

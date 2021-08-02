@@ -5,13 +5,17 @@
 
 #pragma once
 
+#include "../engine/Logger.h"
+
 #include <string>
 
 class Bootstrap {
 public:
 	/**
-	**/
-	bool load();
+	* @param Logger* logger
+	* @return bool
+	 **/
+	bool load(Logger* logger);
 
 private:
 	std::string _dataPath;

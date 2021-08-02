@@ -34,7 +34,7 @@ include_directories(${Boost_INCLUDE_DIRS})
 link_directories(${Boost_LIBRARY_DIRS})
 
 # Add source to this project's executable.
-add_executable (Odyssey "Odyssey.cpp" "Odyssey.h" "ui/Window.h" "engine/Engine.h" "engine/Engine.cpp" "ui/Window.cpp" "ui/Screen.h" "ui/Screen.cpp" "config/Bootstrap.h" "config/Bootstrap.cpp" "config/JsonFile.h" "config/JsonFile.cpp")
+add_executable (Odyssey "Odyssey.cpp" "Odyssey.h" "ui/Window.h" "engine/Engine.h" "engine/Engine.cpp" "ui/Window.cpp" "ui/Screen.h" "ui/Screen.cpp" "config/Bootstrap.h" "config/Bootstrap.cpp" "config/JsonFile.h" "config/JsonFile.cpp" "engine/Logger.h" "engine/Logger.cpp")
 
 # SDL2MAIN_LIBRARY is also specified within SDL2_LIBRARY by the FindSDL2 module.
 # It's needed for Windows specific main function.

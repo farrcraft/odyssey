@@ -1,11 +1,12 @@
 /**
  * The Untitled Adventure / Odyssey
  * Copyright (c) 2021 Joshua Farr (josh@farrcraft.com)
-**/
+ **/
 
 #pragma once
 
 #include "../config/Bootstrap.h"
+#include "Logger.h"
 
 /**
  **/
@@ -21,6 +22,13 @@ public:
 	 **/
 	bool shutdown();
 
+	/**
+	 * @return Logger*
+	 **/
+	Logger* logger();
+
 private:
 	Bootstrap _bootstrap;
+	Logger _logger;
+
 };
