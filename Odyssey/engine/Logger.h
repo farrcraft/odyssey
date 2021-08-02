@@ -9,6 +9,9 @@
 #include <boost/log/trivial.hpp>
 #include <boost/log/sources/severity_logger.hpp>
 
+#define LOG_INFO(logger) BOOST_LOG_SEV(logger.get(), boost::log::trivial::info)
+#define LOG_ERROR(logger) BOOST_LOG_SEV(logger.get(), boost::log::trivial::error)
+
 /**
  **/
 class Logger {

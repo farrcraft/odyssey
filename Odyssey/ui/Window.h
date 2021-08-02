@@ -16,12 +16,12 @@ public:
 	/**
 	 * @param Logger* logger
 	 **/
-	Window(Logger* logger);
+	Window(Logger& logger);
 
 	/**
 	 * @return bool
 	 **/
-	bool create();
+	bool create(int width, int height);
 
 	/**
 	 * @return void
@@ -35,5 +35,5 @@ public:
 private:
 	SDL_Window* _window;
 	SDL_Surface* _surface;
-	Logger* _logger;
+	Logger _logger;
 };

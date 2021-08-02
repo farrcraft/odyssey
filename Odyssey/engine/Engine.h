@@ -20,12 +20,17 @@ public:
 	/**
 	 * @return bool
 	 **/
+	bool run();
+
+	/**
+	 * @return bool
+	 **/
 	bool shutdown();
 
 	/**
-	 * @return Logger*
+	 * @return Logger&
 	 **/
-	Logger* logger();
+	Logger& logger();
 
 private:
 	Bootstrap _bootstrap;

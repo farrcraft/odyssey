@@ -7,23 +7,22 @@
 
 #include <iostream>
 
-const int SCREEN_WIDTH = 800;
-const int SCREEN_HEIGHT = 600;
-
 /**
  **/
-Window::Window(Logger* logger) : 
+Window::Window(Logger &logger) : 
+	_window(nullptr),
+	_surface(nullptr),
 	_logger(logger) {
 
 }
 
 /**
 **/
-bool Window::create() {
+bool Window::create(int width, int height) {
 	//Create window
-	_window = SDL_CreateWindow("Odyssey", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+	_window = SDL_CreateWindow("Odyssey", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_SHOWN);
 	if (_window == NULL) {
-		BOOST_LOG_SEV(_logger->get(), boost::log::trivial::error) << "Window could not be created! SDL_Error: " << SDL_GetError();
+		LOG_ERROR(_logger) << "Window could not be created! SDL_Error: " << SDL_GetError();
 		return false;
 	}
 	// The surface contained by the window
