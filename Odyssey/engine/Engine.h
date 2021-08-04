@@ -8,32 +8,36 @@
 #include "../config/Bootstrap.h"
 #include "Logger.h"
 
-/**
- **/
-class Engine {
-public:
-	/**
-	 * @return bool
-	 **/
-	bool initialize();
+namespace odyssey::engine {
 
 	/**
-	 * @return bool
 	 **/
-	bool run();
+	class Engine {
+	public:
+		/**
+		 * @return bool
+		 **/
+		bool initialize();
 
-	/**
-	 * @return bool
-	 **/
-	bool shutdown();
+		/**
+		 * @return bool
+		 **/
+		bool run();
 
-	/**
-	 * @return Logger&
-	 **/
-	Logger& logger();
+		/**
+		 * @return bool
+		 **/
+		bool shutdown();
 
-private:
-	Bootstrap _bootstrap;
-	Logger _logger;
+		/**
+		 * @return Logger&
+		 **/
+		Logger& logger();
+
+	private:
+		odyssey::config::Bootstrap bootstrap_;
+		Logger logger_;
+
+	};
 
 };

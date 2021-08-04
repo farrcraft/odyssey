@@ -9,6 +9,8 @@
 #include <boost/log/utility/setup/common_attributes.hpp>
 #include <boost/log/utility/setup/file.hpp>
 
+using namespace odyssey::engine;
+
 /**
  **/
 void Logger::initialize() {
@@ -27,5 +29,5 @@ void Logger::initialize() {
 }
 
 boost::log::sources::severity_logger< boost::log::trivial::severity_level > &Logger::get() {
-	return _logger;
+	return logger_;
 }

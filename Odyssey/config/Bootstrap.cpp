@@ -10,17 +10,19 @@
 
 #include <iostream>
 
+using namespace odyssey::config;
+
 /**
  **/
 Bootstrap::Bootstrap() :
-    _windowWidth(300),
-    _windowHeight(200) {
+    windowWidth_(300),
+    windowHeight_(200) {
 
 }
 
 /**
  **/
-bool Bootstrap::load(Logger &logger) {
+bool Bootstrap::load(odyssey::engine::Logger &logger) {
     try {
         boost::filesystem::path path = boost::filesystem::current_path();
         LOG_INFO(logger) << "Current path is: " << path;
@@ -43,13 +45,13 @@ bool Bootstrap::load(Logger &logger) {
         auto const document = parser.release();
         boost::json::object const& object = document.as_object();
 
-        _dataPath = boost::json::value_to<std::string>(object.at("data_path"));
-        LOG_INFO(logger) << "Found data path: " << _dataPath;
+        dataPath_ = boost::json::value_to<std::string>(object.at("data_path"));
+        LOG_INFO(logger) << "Found data path: " << dataPath_;
 
         auto const window = object.at("window");
-        _windowWidth = boost::json::value_to<int>(window.at("width"));
-        _windowHeight = boost::json::value_to<int>(window.at("height"));
-        LOG_INFO(logger) << "Setting default window size to " << _windowWidth << "x" << _windowHeight;
+        windowWidth_ = boost::json::value_to<int>(window.at("width"));
+        windowHeight_ = boost::json::value_to<int>(window.at("height"));
+        LOG_INFO(logger) << "Setting default window size to " << windowWidth_ << "x" << windowHeight_;
     }
     catch (std::exception const& e) {
         LOG_ERROR(logger) << "Bootstrap caught exception: " << e.what();
@@ -62,11 +64,11 @@ bool Bootstrap::load(Logger &logger) {
 /**
  **/
 int Bootstrap::windowWidth() const {
-    return _windowWidth;
+    return windowWidth_;
 }
 
 /**
  **/
 int Bootstrap::windowHeight() const {
-    return _windowHeight;
+    return windowHeight_;
 }

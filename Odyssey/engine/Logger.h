@@ -9,21 +9,26 @@
 #include <boost/log/trivial.hpp>
 #include <boost/log/sources/severity_logger.hpp>
 
+// Convenience macros
 #define LOG_INFO(logger) BOOST_LOG_SEV(logger.get(), boost::log::trivial::info)
 #define LOG_ERROR(logger) BOOST_LOG_SEV(logger.get(), boost::log::trivial::error)
 
-/**
- **/
-class Logger {
-public:
-	/**
-	 **/
-	void initialize();
+namespace odyssey::engine {
 
 	/**
 	 **/
-	boost::log::sources::severity_logger< boost::log::trivial::severity_level > &get();
+	class Logger {
+	public:
+		/**
+		 **/
+		void initialize();
 
-private:
-	boost::log::sources::severity_logger< boost::log::trivial::severity_level > _logger;
+		/**
+		 **/
+		boost::log::sources::severity_logger< boost::log::trivial::severity_level >& get();
+
+	private:
+		boost::log::sources::severity_logger< boost::log::trivial::severity_level > logger_;
+	};
+
 };

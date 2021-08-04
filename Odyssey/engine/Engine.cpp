@@ -8,19 +8,21 @@
 
 #include <SDL.h>
 
+using namespace odyssey::engine;
+
 /**
  **/
 bool Engine::initialize() {
-	_logger.initialize();
-	LOG_INFO(_logger) << "Initializing engine...";
+	logger_.initialize();
+	LOG_INFO(logger_) << "Initializing engine...";
 
 	// Initialize SDL
 	if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-		LOG_ERROR(_logger) << "SDL could not initialize! SDL_Error: " << SDL_GetError();
+		LOG_ERROR(logger_) << "SDL could not initialize! SDL_Error: " << SDL_GetError();
 		return false;
 	}
 
-	if (!_bootstrap.load(_logger)) {
+	if (!bootstrap_.load(logger_)) {
 		return false;
 	}
 
@@ -30,7 +32,7 @@ bool Engine::initialize() {
 /**
  **/
 bool Engine::shutdown() {
-	LOG_INFO(_logger) << "Shutting down engine...";
+	LOG_INFO(logger_) << "Shutting down engine...";
 
 	// Quit SDL subsystems
 	SDL_Quit();
@@ -40,8 +42,8 @@ bool Engine::shutdown() {
 /**
  **/
 bool Engine::run() {
-	Window window(_logger);
-	if (!window.create(_bootstrap.windowWidth(), _bootstrap.windowHeight())) {
+	odyssey::ui::Window window(logger_);
+	if (!window.create(bootstrap_.windowWidth(), bootstrap_.windowHeight())) {
 		return false;
 	}
 
@@ -75,5 +77,5 @@ bool Engine::run() {
 /**
  **/
 Logger& Engine::logger() {
-	return _logger;
+	return logger_;
 }

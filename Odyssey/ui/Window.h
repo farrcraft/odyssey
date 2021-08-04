@@ -9,31 +9,35 @@
 
 #include <SDL.h>
 
-/**
-**/
-class Window {
-public:
-	/**
-	 * @param Logger* logger
-	 **/
-	Window(Logger& logger);
-
-	/**
-	 * @return bool
-	 **/
-	bool create(int width, int height);
-
-	/**
-	 * @return void
-	 **/
-	void destroy();
+namespace odyssey::ui {
 
 	/**
 	**/
-	void paint();
+	class Window {
+	public:
+		/**
+		 * @param Logger* logger
+		 **/
+		Window(odyssey::engine::Logger& logger);
 
-private:
-	SDL_Window* _window;
-	SDL_Surface* _surface;
-	Logger _logger;
+		/**
+		 * @return bool
+		 **/
+		bool create(int width, int height);
+
+		/**
+		 * @return void
+		 **/
+		void destroy();
+
+		/**
+		**/
+		void paint();
+
+	private:
+		SDL_Window* window_;
+		SDL_Surface* surface_;
+		odyssey::engine::Logger logger_;
+	};
+
 };

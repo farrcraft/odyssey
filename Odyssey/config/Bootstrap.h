@@ -9,33 +9,37 @@
 
 #include <string>
 
-/**
- * Bootstrap configuration
- * This is a minimal configuration file that provides the core settings 
- * necessary for booting up the engine.
- **/
-class Bootstrap {
-public:
-	/**
-	 **/
-	Bootstrap();
+namespace odyssey::config {
 
 	/**
-	 * @param Logger& logger
-	 * @return bool
+	 * Bootstrap configuration
+	 * This is a minimal configuration file that provides the core settings
+	 * necessary for booting up the engine.
 	 **/
-	bool load(Logger& logger);
+	class Bootstrap {
+	public:
+		/**
+		 **/
+		Bootstrap();
 
-	/**
-	 **/
-	int windowWidth() const;
+		/**
+		 * @param Logger& logger
+		 * @return bool
+		 **/
+		bool load(odyssey::engine::Logger& logger);
 
-	/**
-	 **/
-	int windowHeight() const;
+		/**
+		 **/
+		int windowWidth() const;
 
-private:
-	std::string _dataPath;
-	int _windowWidth;
-	int _windowHeight;
+		/**
+		 **/
+		int windowHeight() const;
+
+	private:
+		std::string dataPath_;
+		int windowWidth_;
+		int windowHeight_;
+	};
+
 };

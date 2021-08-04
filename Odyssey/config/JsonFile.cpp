@@ -8,11 +8,13 @@
 #include <cstdio>
 #include <string>
 
+using namespace odyssey::config;
+
 /**
  **/
 JsonFile::JsonFile(JsonFile&& other) noexcept
-    : _handle(other._handle) {
-    other._handle = nullptr;
+    : handle_(other.handle_) {
+    other.handle_ = nullptr;
 }
 
 /**
@@ -25,8 +27,8 @@ JsonFile::JsonFile(char const* path, char const* mode) {
  **/
 JsonFile& JsonFile::operator=(JsonFile&& other) noexcept {
     close();
-    _handle = other._handle;
-    other._handle = nullptr;
+    handle_ = other.handle_;
+    other.handle_ = nullptr;
     return *this;
 }
 
@@ -34,8 +36,8 @@ JsonFile& JsonFile::operator=(JsonFile&& other) noexcept {
  **/
 JsonFile::~JsonFile() {
 
-	if (_handle) {
-		std::fclose(_handle);
+	if (handle_) {
+		std::fclose(handle_);
 	}
 }
 
@@ -52,22 +54,22 @@ void JsonFile::open(char const* path, char const* mode) {
 /**
  **/
 long JsonFile::size() const noexcept {
-    return _size;
+    return size_;
 }
 
 /**
  **/
 bool JsonFile::eof() const noexcept {
-    return std::feof(_handle) != 0;
+    return std::feof(handle_) != 0;
 }
 
 /**
  **/
 void JsonFile::close() {
-    if (_handle) {
-        std::fclose(_handle);
-        _handle = nullptr;
-        _size = 0;
+    if (handle_) {
+        std::fclose(handle_);
+        handle_ = nullptr;
+        size_ = 0;
     }
 }
 
@@ -81,19 +83,19 @@ void JsonFile::fail(boost::json::error_code& ec) {
  **/
 void JsonFile::open(char const* path, char const* mode, boost::json::error_code& ec) {
     close();
-    errno_t err = fopen_s(&_handle, path, mode);
+    errno_t err = fopen_s(&handle_, path, mode);
     if (err != 0) {
         return fail(ec);
     }
-    if (std::fseek(_handle, 0, SEEK_END) != 0) {
+    if (std::fseek(handle_, 0, SEEK_END) != 0) {
         return fail(ec);
     }
-    _size = std::ftell(_handle);
-    if (_size == -1) {
-        _size = 0;
+    size_ = std::ftell(handle_);
+    if (size_ == -1) {
+        size_ = 0;
         return fail(ec);
     }
-    if (std::fseek(_handle, 0, SEEK_SET) != 0) {
+    if (std::fseek(handle_, 0, SEEK_SET) != 0) {
         return fail(ec);
     }
 }
@@ -101,8 +103,8 @@ void JsonFile::open(char const* path, char const* mode, boost::json::error_code&
 /**
  **/
 std::size_t JsonFile::read(char* data, std::size_t size, boost::json::error_code& ec) {
-    auto const nread = std::fread(data, 1, size, _handle);
-    if (std::ferror(_handle)) {
+    auto const nread = std::fread(data, 1, size, handle_);
+    if (std::ferror(handle_)) {
         ec.assign(errno, boost::json::generic_category());
     }
     return nread;
