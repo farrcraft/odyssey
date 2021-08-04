@@ -32,7 +32,7 @@ namespace odyssey::ui {
 
 		/**
 		**/
-		void paint();
+		void paint(SDL_Surface *surface);
 
 	private:
 		SDL_Window* window_;

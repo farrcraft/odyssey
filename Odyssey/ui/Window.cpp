@@ -41,9 +41,12 @@ void Window::destroy() {
 
 /**
  **/
-void Window::paint() {
+void Window::paint(SDL_Surface *surface) {
+	// passing in a surface here is just a temporary hack to quickly get an image on the screen
+	SDL_BlitSurface(surface, NULL, surface_, NULL);
+
 	// Fill the surface white
-	SDL_FillRect(surface_, NULL, SDL_MapRGB(surface_->format, 0xFF, 0xFF, 0xFF));
+	// SDL_FillRect(surface_, NULL, SDL_MapRGB(surface_->format, 0xFF, 0xFF, 0xFF));
 
 	SDL_UpdateWindowSurface(window_);
 }
