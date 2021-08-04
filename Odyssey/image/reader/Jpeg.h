@@ -8,9 +8,9 @@
 
 #include "../Reader.h"
 
-namespace odessey::image::reader {
+namespace odyssey::image::reader {
 
-	class Jpeg : public odessey::image::Reader
+	class Jpeg : public odyssey::image::Reader
 	{
 	public:
 		Jpeg();

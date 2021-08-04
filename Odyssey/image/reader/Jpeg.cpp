@@ -16,6 +16,9 @@
 // for setjmp/longjmp used in jpeg error handling
 #include <csetjmp>
 
+using namespace odyssey::image;
+using namespace odyssey::image::reader;
+
 // JPEG library error handling
 struct my_error_mgr {
 	struct jpeg_error_mgr pub;	// "public" fields
@@ -52,7 +55,7 @@ Jpeg::~Jpeg() {
 /**
  **/
 boost::shared_ptr<Image> Jpeg::read(const std::string& filename) {
-	BOOST_LOG_TRIVIAL(debug) << "JPEGReader::read - Reading jpeg file [" << filename << "]";
+	//BOOST_LOG_TRIVIAL(debug) << "JPEGReader::read - Reading jpeg file [" << filename << "]";
 
 	boost::shared_ptr<Image> empty_ptr;
 	struct jpeg_decompress_struct cinfo;
@@ -60,8 +63,9 @@ boost::shared_ptr<Image> Jpeg::read(const std::string& filename) {
 	// open the file
 	FILE* fp;
 	errno = 0;
-	if ((fp = fopen(filename.c_str(), "rb")) == 0) {
-		BOOST_LOG_TRIVIAL(debug) << "JPEGReader::read - failed opening file [" << filename << "] with errno [" << strerror(errno) << "]";
+	errno_t err = fopen_s(&fp, filename.c_str(), "rb");
+	if (err != 0) {
+		//BOOST_LOG_TRIVIAL(debug) << "JPEGReader::read - failed opening file [" << filename << "] with errno [" << strerror(errno) << "]";
 		return empty_ptr;
 	}
 
