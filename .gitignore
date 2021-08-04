@@ -1,3 +1,4 @@
 vendor/*
 out/build/*
 .vs/*
+data/testing-assets
