@@ -32,17 +32,24 @@ find_package(Boost 1.76.0 REQUIRED COMPONENTS log)
 
 include_directories(
 	${Boost_INCLUDE_DIRS}
-	"../vendor/libjpeg-turbo-2.1.0")
+	"../vendor/libjpeg-turbo-2.1.0"
+	"../vendor/libpng-1.6.37"
+	"../vendor/zlib-1.2.11")
 
 link_directories(
 	${Boost_LIBRARY_DIRS}
-	"../vendor/libjpeg-turbo-2.1.0/build")
+	"../vendor/libjpeg-turbo-2.1.0"
+	"../vendor/libpng-1.6.37"
+	"../vendor/zlib-1.2.11")
 
 # This gets us C++17 and newer language features, e.g. nested namespace support - https://docs.microsoft.com/en-us/cpp/error-messages/compiler-errors-1/compiler-error-c2429?view=msvc-160
 add_compile_options("/std:c++latest")
 
 # Add source to this project's executable.
-add_executable (Odyssey "Odyssey.cpp" "Odyssey.h" "ui/Window.h" "engine/Engine.h" "engine/Engine.cpp" "ui/Window.cpp" "ui/Screen.h" "ui/Screen.cpp" "config/Bootstrap.h" "config/Bootstrap.cpp" "config/JsonFile.h" "config/JsonFile.cpp" "engine/Logger.h" "engine/Logger.cpp" "image/Image.h" "image/Image.cpp")
+add_executable (Odyssey "Odyssey.cpp" "Odyssey.h" "ui/Window.h" 
+"engine/Engine.h" "engine/Engine.cpp" "ui/Window.cpp" "ui/Screen.h" "ui/Screen.cpp" "config/Bootstrap.h" "config/Bootstrap.cpp" "config/JsonFile.h" "config/JsonFile.cpp" "engine/Logger.h" 
+"engine/Logger.cpp" "image/Image.h" "image/Image.cpp" "image/Reader.cpp" "image/reader/Jpeg.h" "image/reader/Jpeg.cpp"
+"image/reader/Png.h" "image/reader/Png.cpp")
 
 # SDL2MAIN_LIBRARY is also specified within SDL2_LIBRARY by the FindSDL2 module.
 # It's needed for Windows specific main function.
@@ -51,4 +58,5 @@ target_link_libraries(Odyssey
 		${SDL2MAIN_LIBRARY}
         ${SDL2_LIBRARY}
 		${Boost_LIBRARIES}
-		"turbojpeg")
+		"turbojpeg-static" "jpeg-static"
+		"libpng16d" "zlibd")
