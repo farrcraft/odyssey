@@ -45,9 +45,20 @@ bool Bootstrap::load(odyssey::engine::Logger &logger) {
         auto const document = parser.release();
         boost::json::object const& object = document.as_object();
 
-        dataPath_ = boost::json::value_to<std::string>(object.at("data_path"));
-        LOG_INFO(logger) << "Found data path: " << dataPath_;
+        // sanity check that the data path actually exists
+        boost::filesystem::path dataPath = boost::filesystem::canonical(boost::filesystem::path(boost::json::value_to<std::string>(object.at("data_path"))));
+ 
+        if (boost::filesystem::is_directory(dataPath)) {
+            dataPath_ = dataPath.string();
 
+            LOG_INFO(logger) << "Found data path: " << dataPath_;
+        }
+        else {
+            LOG_ERROR(logger) << "Couldn't resolve data path: " << dataPath;
+            return false;
+        }
+
+        // default window options
         auto const window = object.at("window");
         windowWidth_ = boost::json::value_to<int>(window.at("width"));
         windowHeight_ = boost::json::value_to<int>(window.at("height"));
@@ -71,4 +82,10 @@ int Bootstrap::windowWidth() const {
  **/
 int Bootstrap::windowHeight() const {
     return windowHeight_;
+}
+
+/**
+ **/
+std::string const& Bootstrap::dataPath() const {
+    return dataPath_;
 }

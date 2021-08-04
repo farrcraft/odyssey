@@ -36,6 +36,10 @@ namespace odyssey::config {
 		 **/
 		int windowHeight() const;
 
+		/**
+		 **/
+		std::string const& dataPath() const;
+
 	private:
 		std::string dataPath_;
 		int windowWidth_;
