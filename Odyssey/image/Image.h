@@ -5,7 +5,7 @@
 
 #pragma once
 
-namespace  odessey::image {
+namespace  odyssey::image {
 
 	/**
 	 * a simple image class.

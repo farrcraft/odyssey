@@ -10,7 +10,7 @@
 #include <iostream>
 #include <cstring>
 
-using namespace odessey::image;
+using namespace odyssey::image;
 
 /**
  **/
