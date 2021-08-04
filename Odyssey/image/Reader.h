@@ -5,16 +5,21 @@
 
 #pragma once
 
-#include "../Reader.h"
+#include "Image.h"
 
-namespace odessey::image {
+#include <boost/shared_ptr.hpp>
 
-	class Jpeg : public Reader {
+namespace odyssey::image {
+
+	class Reader {
 	public:
-		Jpeg();
-		~Jpeg();
+		Reader();
+		virtual ~Reader();
 
 		virtual boost::shared_ptr<Image> read(const std::string& filename);
+
+	private:
+
 	};
 
 }; // end namespace
