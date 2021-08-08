@@ -15,6 +15,8 @@
 #include <iostream>
 #include <cstdio>
 
+#include <boost/make_shared.hpp>
+
 using namespace odyssey::image;
 using namespace odyssey::image::reader;
 
@@ -97,7 +99,7 @@ boost::shared_ptr<Image> Png::read(const std::string & filename) {
 	channels = png_get_channels(png_ptr, info_ptr);
 
 	// now we can allocate memory to store the image
-	boost::shared_ptr<Image> img(new Image(width, height, channels * bpp));
+	boost::shared_ptr<Image> img = boost::make_shared<Image>(width, height, channels * bpp);
 	unsigned char * data = img->data();
 
 	// and allocate memory for an array of row-pointers

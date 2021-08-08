@@ -16,6 +16,8 @@
 // for setjmp/longjmp used in jpeg error handling
 #include <csetjmp>
 
+#include <boost/make_shared.hpp>
+
 using namespace odyssey::image;
 using namespace odyssey::image::reader;
 
@@ -104,7 +106,7 @@ boost::shared_ptr<Image> Jpeg::read(const std::string& filename) {
 	// Adjust default decompression parameters by re-parsing the options
 	(void)jpeg_start_decompress(&cinfo);
 
-	boost::shared_ptr<Image> img(new Image(cinfo.image_width, cinfo.image_height, 24));
+	boost::shared_ptr<Image> img = boost::make_shared<Image>(cinfo.image_width, cinfo.image_height, 24);
 	unsigned char* data = img->data();
 
 	// Process data
