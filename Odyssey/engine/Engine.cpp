@@ -5,9 +5,6 @@
 
 #include "Engine.h"
 
-// probably just temporary here for initial image loading/display test
-#include "../image/Image.h"
-#include "../image/reader/Png.h"
 #include "../render/renderable/Player.h"
 
 #include <boost/filesystem.hpp>
@@ -29,6 +26,7 @@ bool Engine::initialize() {
 		return false;
 	}
 
+	// Load bootstrap config
 	if (!bootstrap_.load(logger_)) {
 		return false;
 	}
