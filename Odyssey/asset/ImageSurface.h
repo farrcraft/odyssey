@@ -16,7 +16,7 @@ namespace odyssey::asset {
 	public:
 		/**
 		 **/
-		ImageSurface(odyssey::engine::Logger& logger, const std::string& name, asset::type::Type t);
+		ImageSurface(odyssey::engine::Logger& logger, const std::string& name, Type t);
 
 		/**
 		 **/
