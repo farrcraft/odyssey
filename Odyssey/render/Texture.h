@@ -14,6 +14,14 @@ namespace odyssey::render {
 	public:
 		/**
 		 **/
+		Texture(SDL_Renderer* renderer, SDL_Surface* surface);
+
+		/**
+		 **/
+		Texture(SDL_Renderer* renderer, int width, int height);
+
+		/**
+		 **/
 		~Texture();
 
 	private:
