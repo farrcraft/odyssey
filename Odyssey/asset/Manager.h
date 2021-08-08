@@ -23,7 +23,7 @@ namespace odyssey::asset {
 		
 		/**
 		 **/
-		bool load(const std::string& name, asset::type::Type t);
+		bool load(const std::string& name, asset::Type t);
 
 	private:
 		odyssey::engine::Logger logger_;

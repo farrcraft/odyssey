@@ -20,10 +20,10 @@ Manager::Manager(odyssey::engine::Logger& logger, const std::string& path) :
 
 /**
  **/
-bool Manager::load(const std::string& name, asset::type::Type t) {
+bool Manager::load(const std::string& name, asset::Type t) {
 	boost::filesystem::path assetPath = path_;
 	assetPath /= name;
-	if (t == odyssey::asset::type::IMAGE_PNG) {
+	if (t == odyssey::asset::Type::IMAGE_PNG) {
 		boost::shared_ptr<ImageSurface> img = boost::make_shared<ImageSurface>(logger_, name, t);
 		if (!img->load(assetPath.string())) {
 			return false;
