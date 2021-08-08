@@ -15,10 +15,10 @@ namespace  odyssey::image {
 		/**
 		 * The format of the image (the number of channels)
 		 */
-		typedef enum {
+		enum class ImageFormat {
 			FORMAT_RGB = 3,
 			FORMAT_RGBA = 4
-		} ImageFormat;
+		};
 
 		Image();
 		/**

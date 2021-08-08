@@ -14,7 +14,7 @@ using namespace odyssey::image;
 
 /**
  **/
-Image::Image() : data_(0), width_(0), height_(0), bpp_(24), format_(FORMAT_RGB) {
+Image::Image() : data_(0), width_(0), height_(0), bpp_(24), format_(ImageFormat::FORMAT_RGB) {
 }
 
 /**
@@ -23,10 +23,10 @@ Image::Image(unsigned int w, unsigned int h, unsigned int b) : width_(w), height
 	unsigned int bytesPerPixel = bpp_ / 8;
 	unsigned int size = width_ * height_ * bytesPerPixel;
 	if (bytesPerPixel == 3) {
-		format_ = FORMAT_RGB;
+		format_ = ImageFormat::FORMAT_RGB;
 	}
 	else if (bytesPerPixel == 4) {
-		format_ = FORMAT_RGBA;
+		format_ = ImageFormat::FORMAT_RGBA;
 	}
 	data_ = new unsigned char[size];
 	memset(data_, 0, size);
