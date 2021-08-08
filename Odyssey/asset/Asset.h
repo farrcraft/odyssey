@@ -19,12 +19,12 @@ namespace odyssey::asset {
 	public:
 		/**
 		 **/
-		Asset(odyssey::engine::Logger& logger, const std::string& name, asset::type::Type t);
+		Asset(odyssey::engine::Logger& logger, const std::string& name, Type t);
 
 	protected:
 		odyssey::engine::Logger logger_;
 		std::string name_;
-		asset::type::Type type_;
+		Type type_;
 		boost::filesystem::path path_;
 	};
 };

@@ -11,7 +11,7 @@ using namespace odyssey::asset;
 
 /**
  **/
-ImageSurface::ImageSurface(odyssey::engine::Logger& logger, const std::string& name, asset::type::Type t) :
+ImageSurface::ImageSurface(odyssey::engine::Logger& logger, const std::string& name, Type t) :
 	Asset(logger, name, t),
 	surface_(nullptr) {
 
@@ -28,14 +28,8 @@ ImageSurface::~ImageSurface() {
 /**
  **/
 bool ImageSurface::load(const std::string &path) {
-/*
-	// let's just hardcode an image to load from our data path
-	boost::filesystem::path imagePath(bootstrap_.dataPath());
-	imagePath /= "sample.png";
-*/
 	odyssey::image::reader::Png reader;
 	boost::shared_ptr<odyssey::image::Image> image;
-// image = reader.read(imagePath.string());
 	image = reader.read(path);
 
 	Uint32 rmask, gmask, bmask, amask;
