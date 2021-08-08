@@ -11,7 +11,7 @@
       "buildCommandArgs": "",
       "ctestCommandArgs": "",
       "cmakeExecutable": "C:/Users/sigsegv/source/repos/Odyssey/vendor/cmake-3.21.1-windows-x86_64/bin/cmake.exe",
-      "clangTidyChecks": "-*,cppcoreguidelines-*,bugprone-*,modernize-*,performance-*,readability-*"
+      "clangTidyChecks": "-*,cppcoreguidelines-*,bugprone-*,modernize-*,performance-*,readability-*,clang-analyzer-*"
     }
   ]
 }
