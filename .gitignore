@@ -1,4 +1,5 @@
 vendor/*
+!vendor/.clang-tidy
 out/build/*
 .vs/*
 data/testing-assets
