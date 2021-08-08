@@ -29,6 +29,7 @@ bool Window::create(int width, int height) {
 	}
 	// The surface contained by the window
 	surface_ = SDL_GetWindowSurface(window_);
+
 	return true;
 }
 
@@ -36,7 +37,15 @@ bool Window::create(int width, int height) {
  **/
 void Window::destroy() {
 	SDL_FreeSurface(surface_);
+	surface_ = NULL;
 	SDL_DestroyWindow(window_);
+	window_ = NULL;
+}
+
+/**
+ **/
+SDL_Window* Window::sdl() {
+	return window_;
 }
 
 /**
@@ -45,6 +54,13 @@ void Window::paint(SDL_Surface *surface) {
 	// passing in a surface here is just a temporary hack to quickly get an image on the screen
 	SDL_BlitSurface(surface, NULL, surface_, NULL);
 
+	/*
+	we need to capture all of the things that we need to paint to the window here
+	do we need to define a frame type?
+	rendering is 2d but maybe there's a z-index that tells us in which order to do painting?
+	what are painting primitives? sprites / surfaces / textures / images
+	what about a paint operation type?
+	*/
 	// Fill the surface white
 	// SDL_FillRect(surface_, NULL, SDL_MapRGB(surface_->format, 0xFF, 0xFF, 0xFF));
 

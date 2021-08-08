@@ -20,7 +20,7 @@ set(SDL2_PATH "../vendor/sdl2/SDL2-2.0.14")
 find_package(SDL2 REQUIRED)
 
 # SDL2_INCLUDE_DIR variable set by the FindSDL2 module (if it finds directory).
-include_directories(${SDL2_INCLUDE_DIR})
+include_directories(SYSTEM ${SDL2_INCLUDE_DIR})
 
 # set(Boost_DEBUG ON)
 
@@ -30,7 +30,7 @@ set(Boost_USE_STATIC_LIBS ON)
 # CMake already comes with a module for boost - https://cmake.org/cmake/help/latest/module/FindBoost.html
 find_package(Boost 1.76.0 REQUIRED COMPONENTS log)
 
-include_directories(
+include_directories(SYSTEM
 	${Boost_INCLUDE_DIRS}
 	"../vendor/libjpeg-turbo-2.1.0"
 	"../vendor/libpng-1.6.37"
@@ -49,7 +49,7 @@ add_compile_options("/std:c++latest")
 add_executable (Odyssey "Odyssey.cpp" "Odyssey.h" "ui/Window.h" 
 "engine/Engine.h" "engine/Engine.cpp" "ui/Window.cpp" "ui/Screen.h" "ui/Screen.cpp" "config/Bootstrap.h" "config/Bootstrap.cpp" "config/JsonFile.h" "config/JsonFile.cpp" "engine/Logger.h" 
 "engine/Logger.cpp" "image/Image.h" "image/Image.cpp" "image/Reader.cpp" "image/reader/Jpeg.h" "image/reader/Jpeg.cpp"
-"image/reader/Png.h" "image/reader/Png.cpp")
+"image/reader/Png.h" "image/reader/Png.cpp" "engine/Sprite.h" "render/Texture.h"  "render/Frame.h" "engine/Player.h" "engine/SpriteSheet.h" "render/Engine.h" "render/Engine.cpp" "render/Renderable.h" "engine/Player.cpp" "render/renderable/Player.h" "render/renderable/Player.cpp" "render/Renderable.cpp" "asset/Manager.h" "asset/Asset.h" "asset/Manager.cpp" "asset/Asset.cpp" "asset/Type.h" "asset/ImageSurface.h" "asset/ImageSurface.cpp" "render/Texture.cpp")
 
 # SDL2MAIN_LIBRARY is also specified within SDL2_LIBRARY by the FindSDL2 module.
 # It's needed for Windows specific main function.

@@ -4,12 +4,14 @@
  **/
 
 #include "Engine.h"
-#include "../ui/Window.h"
 
 // probably just temporary here for initial image loading/display test
 #include "../image/Image.h"
 #include "../image/reader/Png.h"
+#include "../render/renderable/Player.h"
+
 #include <boost/filesystem.hpp>
+#include <boost/make_shared.hpp>
 
 #include <SDL.h>
 
@@ -30,6 +32,10 @@ bool Engine::initialize() {
 	if (!bootstrap_.load(logger_)) {
 		return false;
 	}
+	
+	assetManager_ = boost::make_shared<odyssey::asset::Manager>(logger_, bootstrap_.dataPath());
+
+	player_ = boost::make_shared<Player>();
 
 	return true;
 }
@@ -39,6 +45,8 @@ bool Engine::initialize() {
 bool Engine::shutdown() {
 	LOG_INFO(logger_) << "Shutting down engine...";
 
+	window_->destroy();
+
 	// Quit SDL subsystems
 	SDL_Quit();
 	return true;
@@ -47,40 +55,22 @@ bool Engine::shutdown() {
 /**
  **/
 bool Engine::run() {
-	odyssey::ui::Window window(logger_);
-	if (!window.create(bootstrap_.windowWidth(), bootstrap_.windowHeight())) {
+	window_ = boost::shared_ptr<odyssey::ui::Window> (new odyssey::ui::Window(logger_));
+	if (!window_->create(bootstrap_.windowWidth(), bootstrap_.windowHeight())) {
+		return false;
+	}
+
+	renderEngine_ = boost::make_shared<odyssey::render::Engine>(logger_);
+	if (!renderEngine_->initialize(window_)) {
 		return false;
 	}
 
 	bool quit = false;
 	SDL_Event e;
 
-	// let's just hardcode an image to load from our data path
-	boost::filesystem::path imagePath(bootstrap_.dataPath());
-	imagePath /= "sample.png";
-	odyssey::image::reader::Png reader;
-	boost::shared_ptr<odyssey::image::Image> image;
-	image = reader.read(imagePath.string());
+	renderEngine_->addRenderable(boost::make_shared<odyssey::render::renderable::Player>(logger_, player_));
 
-	Uint32 rmask, gmask, bmask, amask;
-#if SDL_BYTEORDER == SDL_BIG_ENDIAN
-	int shift = (image->bpp() == 24) ? 8 : 0;
-	rmask = 0xff000000 >> shift;
-	gmask = 0x00ff0000 >> shift;
-	bmask = 0x0000ff00 >> shift;
-	amask = 0x000000ff >> shift;
-#else // little endian, like x86
-	rmask = 0x000000ff;
-	gmask = 0x0000ff00;
-	bmask = 0x00ff0000;
-	amask = (image->bpp() == 24) ? 0 : 0xff000000;
-#endif
-	SDL_Surface *surface = SDL_CreateRGBSurfaceFrom(image->data(), image->width(), image->height(), image->bpp(), ((image->bpp() / 8) * image->width()), rmask, gmask, bmask, amask);
-	if (surface == NULL) {
-		LOG_ERROR(logger_) << "Error creating surface from image: " << SDL_GetError();
-		return false;
-	}
-
+	// Enter main game loop
 	while (!quit) {
 		//Handle events on queue
 		while (SDL_PollEvent(&e) != 0) {
@@ -90,21 +80,24 @@ bool Engine::run() {
 			}
 		}
 
+		// tick the game
+		if (!tick()) {
+			return false;
+		}
+
 		// and draw the image on the screen
-		window.paint(surface);
-
-		/*
-		//Apply the image
-		SDL_BlitSurface(gXOut, NULL, gScreenSurface, NULL);
-
-		//Wait two seconds
-		SDL_Delay(2000);
-		*/
+		renderEngine_->renderFrame();
 	}
 
-	SDL_FreeSurface(surface);
+	return true;
+}
 
-	window.destroy();
+/**
+ **/
+bool Engine::tick() {
+
+	player_->tick();
+
 	return true;
 }
 

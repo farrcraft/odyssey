@@ -31,6 +31,10 @@ namespace odyssey::ui {
 		void destroy();
 
 		/**
+		 **/
+		SDL_Window* sdl();
+
+		/**
 		**/
 		void paint(SDL_Surface *surface);
 
