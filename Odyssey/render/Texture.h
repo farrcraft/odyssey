@@ -9,14 +9,17 @@
 
 namespace odyssey::render {
 	/**
+	 * Represents an SDL Texture
 	 **/
 	class Texture {
 	public:
 		/**
+		 * Create a texture from a surface 
 		 **/
 		Texture(SDL_Renderer* renderer, SDL_Surface* surface);
 
 		/**
+		 * Create an empty texture with given dimensions 
 		 **/
 		Texture(SDL_Renderer* renderer, int width, int height);
 
