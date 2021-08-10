@@ -25,6 +25,5 @@ namespace odyssey::asset {
 		odyssey::engine::Logger logger_;
 		std::string name_;
 		Type type_;
-		boost::filesystem::path path_;
 	};
 };
