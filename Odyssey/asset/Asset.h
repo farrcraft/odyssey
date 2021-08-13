@@ -6,9 +6,6 @@
 #pragma once
 
 #include "Type.h"
-#include "../engine/Logger.h"
-
-#include <boost/filesystem.hpp>
 
 #include <string>
 
@@ -19,10 +16,9 @@ namespace odyssey::asset {
 	public:
 		/**
 		 **/
-		Asset(odyssey::engine::Logger& logger, const std::string& name, Type t);
+		Asset(const std::string& name, Type t);
 
 	protected:
-		odyssey::engine::Logger logger_;
 		std::string name_;
 		Type type_;
 	};

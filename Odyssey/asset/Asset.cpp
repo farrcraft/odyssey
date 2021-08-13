@@ -7,8 +7,7 @@
 
 using namespace odyssey::asset;
 
-Asset::Asset(odyssey::engine::Logger& logger, const std::string& name, asset::Type t) :
-	logger_(logger),
+Asset::Asset(const std::string& name, asset::Type t) :
 	name_(name),
 	type_(t) {
 
