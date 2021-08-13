@@ -6,6 +6,7 @@
 #pragma once
 
 #include "Asset.h"
+#include "Loader.h"
 #include "Type.h"
 
 #include "../engine/Logger.h"
@@ -19,16 +20,24 @@ namespace odyssey::asset {
 	public:
 		/**
 		 **/
-		Manager(odyssey::engine::Logger& logger, const std::string& path);
-		
+		Manager(const std::string& path);
+
 		/**
 		 **/
-		bool load(const std::string& name, asset::Type t);
+		boost::shared_ptr<Asset> load(const std::string& name, asset::Type t);
+
+		/**
+		 **/
+		boost::shared_ptr<Asset> loadTypeFromExt(const std::string& name);
+
+	protected:
+		/**
+		 **/
+		boost::shared_ptr<Loader> resolveLoader(asset::Type t);
 
 	private:
-		odyssey::engine::Logger logger_;
 		boost::filesystem::path path_;
-		std::list<boost::shared_ptr<Asset>> assets_;
+		std::unordered_map<asset::Type, boost::shared_ptr<Loader>> loaders_;
 	};
 
 };
