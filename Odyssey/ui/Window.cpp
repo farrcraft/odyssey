@@ -14,7 +14,9 @@ using namespace odyssey::ui;
 Window::Window(odyssey::engine::Logger &logger) : 
 	window_(nullptr),
 	surface_(nullptr),
-	logger_(logger) {
+	logger_(logger),
+	width_(300),
+	height_(200) {
 
 }
 
@@ -29,6 +31,9 @@ bool Window::create(int width, int height) {
 	}
 	// The surface contained by the window
 	surface_ = SDL_GetWindowSurface(window_);
+
+	width_ = width;
+	height_ = height;
 
 	return true;
 }
@@ -46,6 +51,16 @@ void Window::destroy() {
  **/
 SDL_Window* Window::sdl() {
 	return window_;
+}
+
+int Window::width() const {
+	return width_;
+}
+
+/**
+ **/
+int Window::height() const {
+	return height_;
 }
 
 /**

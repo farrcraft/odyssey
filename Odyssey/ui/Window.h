@@ -38,9 +38,19 @@ namespace odyssey::ui {
 		**/
 		void paint(SDL_Surface *surface);
 
+		/**
+		 **/
+		int width() const;
+
+		/**
+		 **/
+		int height() const;
+
 	private:
 		SDL_Window* window_;
 		SDL_Surface* surface_;
+		int width_;
+		int height_;
 		odyssey::engine::Logger logger_;
 	};
 
