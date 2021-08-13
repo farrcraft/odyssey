@@ -46,10 +46,10 @@ boost::shared_ptr<Asset> Manager::loadTypeFromExt(const std::string& name) {
 	boost::filesystem::path pathName(name);
 	boost::shared_ptr<Asset> asset;
 	std::string ext = pathName.extension().string();
-	if (ext == "png") {
+	if (ext == ".png") {
 		asset = load(name, asset::Type::IMAGE_PNG);
 	}
-	else if (ext == "jpg") {
+	else if (ext == ".jpg") {
 		asset = load(name, asset::Type::IMAGE_JPEG);
 	}
 	else {
