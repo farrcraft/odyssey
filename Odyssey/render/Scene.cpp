@@ -22,6 +22,7 @@ boost::shared_ptr<Frame> Scene::collect() {
 	boost::shared_ptr<Frame> frame = boost::make_shared<Frame>(context_);
 
 	// do stuff with frame
+	player_->draw(frame);
 
 	return frame;
 }
