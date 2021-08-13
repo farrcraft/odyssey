@@ -5,29 +5,29 @@
 
 #pragma once
 
+#include "Frame.h"
+
 #include "../engine/Logger.h"
 
-#include <SDL.h>
-
 namespace odyssey::render {
+	/**
+	 * Forward declaration 
+	 **/
+	class Engine;
+
 	/**
 	 **/
 	class Renderable {
 	public:
 		/**
 		 **/
-		Renderable(odyssey::engine::Logger& logger);
+		Renderable(boost::shared_ptr<Engine> renderer);
 
 		/**
 		 **/
-		virtual bool initialize(SDL_Renderer* renderer);
-
-		/**
-		 **/
-		virtual bool draw();
+		virtual bool draw(boost::shared_ptr<Frame> frame);
 
 	protected:
-		odyssey::engine::Logger logger_;
-		SDL_Renderer* renderer_;
+		boost::shared_ptr<odyssey::render::Engine> renderer_;
 	};
 };

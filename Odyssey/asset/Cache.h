@@ -4,3 +4,12 @@
  **/
 
 #pragma once
+
+namespace odyssey::asset {
+	/**
+	 **/
+	class Cache {
+	public:
+	private:
+	};
+};

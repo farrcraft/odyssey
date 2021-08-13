@@ -5,6 +5,7 @@
 
 #pragma once
 
+#include "Context.h"
 #include "Operation.h"
 
 #include <vector>
@@ -18,9 +19,18 @@ namespace odyssey::render {
 	public:
 		/**
 		 **/
+		Frame(boost::shared_ptr<Context> context);
+
+		/**
+		 **/
 		void addOperation(boost::shared_ptr<Operation> operation);
 
+		/**
+		 **/
+		void draw();
+
 	private:
+		boost::shared_ptr<Context> context_;
 		std::vector<boost::shared_ptr<Operation>> operations_;
 	};
 };

@@ -5,48 +5,46 @@
 
 #include "Player.h"
 
+#include "../operation/BlitTexture.h"
+#include "../Surface.h"
+#include "../Texture.h"
+#include "../../asset/Image.h"
+#include "../Engine.h"
+
+#include <boost/make_shared.hpp>
+
+using namespace odyssey::render;
 using namespace odyssey::render::renderable;
 
 /**
  **/
-Player::Player(odyssey::engine::Logger& logger, boost::shared_ptr<odyssey::engine::Player> player) :
-	Renderable(logger),
+Player::Player(boost::shared_ptr<Engine> renderer, boost::shared_ptr<odyssey::engine::Player> player) :
+	Renderable(renderer),
 	player_(player) {
 
-	// load the imagesource asset
+	//boost::shared_ptr<odyssey::asset::Image> asset = assetManager->load("sample.png", odyssey::asset::Type::IMAGE_PNG);
+	boost::shared_ptr<odyssey::asset::Asset> asset = renderer_->assetManager()->loadTypeFromExt("sample.png");
+	boost::shared_ptr<odyssey::asset::Image> img = boost::static_pointer_cast<odyssey::asset::Image>(asset);
+
+	// create surface from image
+	boost::shared_ptr<odyssey::render::Surface> surface = boost::make_shared<odyssey::render::Surface>(img->image());
+
+	// create texture from surface
+	boost::shared_ptr<odyssey::render::Texture> texture = boost::make_shared<odyssey::render::Texture>(renderer_->context()->handle(), surface->surface());
+
+	// put the texture into the cache
+	renderer_->textureCache()->cache("sample.png", texture);
 }
 
 /**
  **/
-bool Player::draw() {
-
-	/*
-	// let's just hardcode an image to load from our data path
-	boost::filesystem::path imagePath(bootstrap_.dataPath());
-	imagePath /= "sample.png";
-	odyssey::image::reader::Png reader;
-	boost::shared_ptr<odyssey::image::Image> image;
-	image = reader.read(imagePath.string());
-
-	Uint32 rmask, gmask, bmask, amask;
-#if SDL_BYTEORDER == SDL_BIG_ENDIAN
-	int shift = (image->bpp() == 24) ? 8 : 0;
-	rmask = 0xff000000 >> shift;
-	gmask = 0x00ff0000 >> shift;
-	bmask = 0x0000ff00 >> shift;
-	amask = 0x000000ff >> shift;
-#else // little endian, like x86
-	rmask = 0x000000ff;
-	gmask = 0x0000ff00;
-	bmask = 0x00ff0000;
-	amask = (image->bpp() == 24) ? 0 : 0xff000000;
-#endif
-	SDL_Surface* surface = SDL_CreateRGBSurfaceFrom(image->data(), image->width(), image->height(), image->bpp(), ((image->bpp() / 8) * image->width()), rmask, gmask, bmask, amask);
-	if (surface == NULL) {
-		LOG_ERROR(logger_) << "Error creating surface from image: " << SDL_GetError();
-		return false;
-	}
-	*/
+bool Player::draw(boost::shared_ptr<Frame> frame) {
+	// fetch our source texture from the cache
+	boost::shared_ptr<Texture> source = renderer_->textureCache()->fetch("sample.png");
+	// create a new blit texture render operation
+	boost::shared_ptr<Operation> operation = boost::make_shared<operation::BlitTexture>(source, renderer_->backBuffer());
+	// push onto frame
+	frame->addOperation(operation);
 
 	return true;
 }

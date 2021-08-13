@@ -15,11 +15,11 @@ namespace odyssey::render::renderable {
 	public:
 		/**
 		 **/
-		Player(odyssey::engine::Logger& logger, boost::shared_ptr<odyssey::engine::Player> player);
+		Player(boost::shared_ptr<Engine> renderer, boost::shared_ptr<odyssey::engine::Player> player);
 
 		/**
 		 **/
-		bool draw();
+		bool draw(boost::shared_ptr<Frame> frame);
 
 	private:
 		boost::shared_ptr<odyssey::engine::Player> player_;

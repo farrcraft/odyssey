@@ -9,20 +9,12 @@ using namespace odyssey::render;
 
 /**
  **/
-Renderable::Renderable(odyssey::engine::Logger& logger) : 
-	logger_(logger),
-	renderer_(nullptr) {
+Renderable::Renderable(boost::shared_ptr<Engine> renderer) :
+	renderer_(renderer) {
 }
 
 /**
  **/
-bool Renderable::initialize(SDL_Renderer* renderer) {
-	renderer_ = renderer;
-	return true;
-}
-
-/**
- **/
-bool Renderable::draw() {
+bool Renderable::draw(boost::shared_ptr<Frame> frame) {
 	return true;
 }

@@ -4,3 +4,11 @@
  **/
 
 #pragma once
+
+namespace odyssey::actor {
+	/**
+	 **/
+	class Actor {
+
+	};
+};

@@ -5,11 +5,14 @@
 
 #pragma once
 
-#include <SDL.h>
-
+#include "Context.h"
+#include "Operation.h"
 #include "Renderable.h"
+#include "Scene.h"
+#include "TextureCache.h"
 
 #include "../engine/Logger.h"
+#include "../asset/Manager.h"
 #include "../ui/Window.h"
 
 namespace odyssey::render {
@@ -23,7 +26,7 @@ namespace odyssey::render {
 	public:
 		/**
 		 **/
-		Engine(odyssey::engine::Logger& logger);
+		Engine(odyssey::engine::Logger& logger, boost::shared_ptr<odyssey::asset::Manager> assetManager);
 		
 		/**
 		 **/
@@ -39,16 +42,36 @@ namespace odyssey::render {
 
 		/**
 		 **/
-		void addRenderable(boost::shared_ptr<Renderable> renderable);
+		boost::shared_ptr<odyssey::asset::Manager> assetManager();
+		
+		/**
+		 **/
+		boost::shared_ptr<TextureCache> textureCache();
 
 		/**
 		 **/
 		void renderFrame();
 
+		/**
+		 **/
+		boost::shared_ptr<Context> context();
+
+		/**
+		 **/
+		boost::shared_ptr<Texture> backBuffer();
+
+		/**
+		 **/
+		boost::shared_ptr<Scene> scene();
+
 	private:
 		boost::shared_ptr <odyssey::ui::Window> window_;
+		boost::shared_ptr<Context> context_;
 		odyssey::engine::Logger logger_;
-		SDL_Renderer* renderer_;
+		boost::shared_ptr<Texture> backBuffer_;
+		boost::shared_ptr<odyssey::asset::Manager> assetManager_;
 		std::list<boost::shared_ptr<Renderable>> renderables_;
+		boost::shared_ptr<TextureCache> textureCache_;
+		boost::shared_ptr<Scene> scene_;
 	};
 };

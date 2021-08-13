@@ -5,14 +5,16 @@
 
 #include "Engine.h"
 
+#include <boost/make_shared.hpp>
+
 using namespace odyssey::render;
 
 /**
  **/
-Engine::Engine(odyssey::engine::Logger& logger) :
+Engine::Engine(odyssey::engine::Logger& logger, boost::shared_ptr<odyssey::asset::Manager> assetManager) :
 	logger_(logger),
-	renderer_(nullptr) {
-
+	assetManager_(assetManager) {
+	textureCache_ = boost::make_shared<TextureCache>();
 }
 
 /**
@@ -25,33 +27,58 @@ Engine::~Engine() {
  **/
 bool Engine::initialize(boost::shared_ptr <odyssey::ui::Window> window) {
 	window_ = window;
-	renderer_ = SDL_CreateRenderer(window_->sdl(), -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_TARGETTEXTURE);
-	if (renderer_ == NULL) {
-		return false;
-	}
+	context_ = boost::make_shared<Context>(window_);
+	scene_ = boost::make_shared<Scene>(context_);
+	backBuffer_ = boost::make_shared<Texture>(context_->handle(), window_->width(), window_->height());
+
 	return true;
 }
 
 /**
  **/
 bool Engine::shutdown() {
-	if (renderer_ != NULL) {
-		SDL_DestroyRenderer(renderer_);
-		renderer_ = NULL;
-	}
+
 	return true;
 }
 
 /**
  **/
 void Engine::renderFrame() {
-//	window_->paint(surface);
+	boost::shared_ptr<Frame> frame = scene_->collect();
+	frame->draw();
 
-	SDL_RenderPresent(renderer_);
+	// flip backbuffer
+	SDL_RenderClear(context_->handle());
+	SDL_RenderCopyEx(context_->handle(), backBuffer_->tex(), NULL, NULL, 0, NULL, SDL_FLIP_VERTICAL);
+	SDL_RenderPresent(context_->handle());
 }
 
 /**
  **/
-void Engine::addRenderable(boost::shared_ptr <Renderable> renderable) {
-	renderables_.push_back(renderable);
+boost::shared_ptr<odyssey::asset::Manager> Engine::assetManager() {
+	return assetManager_;
+}
+
+/**
+ **/
+boost::shared_ptr<TextureCache> Engine::textureCache() {
+	return textureCache_;
+}
+
+/**
+ **/
+boost::shared_ptr<Context> Engine::context() {
+	return context_;
+}
+
+/**
+ **/
+boost::shared_ptr<Texture> Engine::backBuffer() {
+	return backBuffer_;
+}
+
+/**
+ **/
+boost::shared_ptr<Scene> Engine::scene() {
+	return scene_;
 }
