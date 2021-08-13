@@ -48,8 +48,11 @@ add_compile_options("/std:c++latest")
 # Add source to this project's executable.
 add_executable (Odyssey "Odyssey.cpp" "Odyssey.h" "ui/Window.h" 
 "engine/Engine.h" "engine/Engine.cpp" "ui/Window.cpp" "ui/Screen.h" "ui/Screen.cpp" "config/Bootstrap.h" "config/Bootstrap.cpp" "config/JsonFile.h" "config/JsonFile.cpp" "engine/Logger.h" 
-"engine/Logger.cpp" "image/Image.h" "image/Image.cpp" "image/Reader.cpp" "image/reader/Jpeg.h" "image/reader/Jpeg.cpp"
-"image/reader/Png.h" "image/reader/Png.cpp" "engine/Sprite.h" "render/Texture.h"  "render/Frame.h" "engine/Player.h" "engine/SpriteSheet.h" "render/Engine.h" "render/Engine.cpp" "render/Renderable.h" "engine/Player.cpp" "render/renderable/Player.h" "render/renderable/Player.cpp" "render/Renderable.cpp" "asset/Manager.h" "asset/Asset.h" "asset/Manager.cpp" "asset/Asset.cpp" "asset/Type.h" "asset/ImageSurface.h" "asset/ImageSurface.cpp" "render/Texture.cpp")
+"engine/Logger.cpp" "image/Image.h" "asset/loader/Jpeg.cpp" "image/Reader.cpp" "image/reader/Jpeg.h" "image/reader/Jpeg.cpp" "image/Image.cpp"
+"image/reader/Png.h" "image/reader/Png.cpp" "engine/Sprite.h" "render/Texture.h"  "render/Frame.h" "engine/Player.h" "engine/SpriteSheet.h" 
+"render/Engine.h" "render/Engine.cpp" "render/Renderable.h" "engine/Player.cpp" "render/renderable/Player.h" "render/renderable/Player.cpp" "render/Renderable.cpp" 
+"asset/Manager.h" "asset/Asset.h" "asset/Manager.cpp" "asset/Asset.cpp" "asset/Type.h"   "render/Texture.cpp" "asset/Loader.h" "asset/Cache.h" "render/TextureCache.h"
+"render/Surface.h" "render/Surface.cpp" "actor/Actor.h" "render/TextureCache.cpp" "asset/loader/Png.h" "asset/loader/Png.cpp" "asset/Image.h" "asset/Image.cpp" "asset/Loader.cpp" "render/operation/BlitTexture.h" "render/Operation.h" "render/Frame.cpp" "render/operation/BlitTexture.cpp" "render/Context.h" "render/Context.cpp" "render/Scene.h" "render/Scene.cpp")
 
 # SDL2MAIN_LIBRARY is also specified within SDL2_LIBRARY by the FindSDL2 module.
 # It's needed for Windows specific main function.
