@@ -25,7 +25,7 @@ namespace odyssey::render {
 
 		/**
 		 **/
-		virtual bool draw(boost::shared_ptr<Frame> frame);
+		virtual void draw(boost::shared_ptr<Frame> frame) = 0;
 
 	protected:
 		boost::shared_ptr<odyssey::render::Engine> renderer_;

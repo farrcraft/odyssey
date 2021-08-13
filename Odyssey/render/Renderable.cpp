@@ -12,9 +12,3 @@ using namespace odyssey::render;
 Renderable::Renderable(boost::shared_ptr<Engine> renderer) :
 	renderer_(renderer) {
 }
-
-/**
- **/
-bool Renderable::draw(boost::shared_ptr<Frame> frame) {
-	return true;
-}

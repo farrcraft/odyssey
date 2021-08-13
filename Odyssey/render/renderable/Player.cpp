@@ -38,13 +38,11 @@ Player::Player(boost::shared_ptr<Engine> renderer, boost::shared_ptr<odyssey::en
 
 /**
  **/
-bool Player::draw(boost::shared_ptr<Frame> frame) {
+void Player::draw(boost::shared_ptr<Frame> frame) {
 	// fetch our source texture from the cache
 	boost::shared_ptr<Texture> source = renderer_->textureCache()->fetch("sample.png");
 	// create a new blit texture render operation
 	boost::shared_ptr<Operation> operation = boost::make_shared<operation::BlitTexture>(source, renderer_->backBuffer());
 	// push onto frame
 	frame->addOperation(operation);
-
-	return true;
 }

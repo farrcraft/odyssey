@@ -19,7 +19,7 @@ namespace odyssey::render::renderable {
 
 		/**
 		 **/
-		bool draw(boost::shared_ptr<Frame> frame);
+		void draw(boost::shared_ptr<Frame> frame);
 
 	private:
 		boost::shared_ptr<odyssey::engine::Player> player_;
