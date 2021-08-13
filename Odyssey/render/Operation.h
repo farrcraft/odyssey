@@ -5,22 +5,17 @@
 
 #pragma once
 
-#include "Operation.h"
-
-#include <vector>
+#include "Context.h"
 
 #include <boost/shared_ptr.hpp>
 
 namespace odyssey::render {
 	/**
 	 **/
-	class Frame {
+	class Operation {
 	public:
 		/**
 		 **/
-		void addOperation(boost::shared_ptr<Operation> operation);
-
-	private:
-		std::vector<boost::shared_ptr<Operation>> operations_;
+		virtual bool run(boost::shared_ptr<Context> context) = 0;
 	};
 };
