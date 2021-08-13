@@ -27,3 +27,9 @@ Texture::~Texture() {
 		texture_ = NULL;
 	}
 }
+
+/**
+ **/
+SDL_Texture* Texture::tex() {
+	return texture_;
+}

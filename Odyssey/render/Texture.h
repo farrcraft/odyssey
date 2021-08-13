@@ -27,6 +27,10 @@ namespace odyssey::render {
 		 **/
 		~Texture();
 
+		/**
+		 **/
+		SDL_Texture* tex();
+
 	private:
 		SDL_Texture* texture_;
 	};
