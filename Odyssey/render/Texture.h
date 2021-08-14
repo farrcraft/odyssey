@@ -5,6 +5,9 @@
 
 #pragma once
 
+#include "Context.h"
+
+#include <boost/shared_ptr.hpp>
 #include <SDL.h>
 
 namespace odyssey::render {
@@ -16,12 +19,12 @@ namespace odyssey::render {
 		/**
 		 * Create a texture from a surface 
 		 **/
-		Texture(SDL_Renderer* renderer, SDL_Surface* surface);
+		Texture(boost::shared_ptr<Context> context, SDL_Surface* surface);
 
 		/**
 		 * Create an empty texture with given dimensions 
 		 **/
-		Texture(SDL_Renderer* renderer, int width, int height);
+		Texture(boost::shared_ptr<Context> context, int width, int height);
 
 		/**
 		 **/
@@ -32,6 +35,7 @@ namespace odyssey::render {
 		SDL_Texture* tex();
 
 	private:
+		boost::shared_ptr<Context> context_;
 		SDL_Texture* texture_;
 	};
 

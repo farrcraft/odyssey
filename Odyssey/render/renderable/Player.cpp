@@ -30,7 +30,7 @@ Player::Player(boost::shared_ptr<Engine> renderer, boost::shared_ptr<odyssey::en
 	boost::shared_ptr<odyssey::render::Surface> surface = boost::make_shared<odyssey::render::Surface>(img->image());
 
 	// create texture from surface
-	boost::shared_ptr<odyssey::render::Texture> texture = boost::make_shared<odyssey::render::Texture>(renderer_->context()->handle(), surface->surface());
+	boost::shared_ptr<odyssey::render::Texture> texture = boost::make_shared<odyssey::render::Texture>(renderer_->context(), surface->surface());
 
 	// put the texture into the cache
 	renderer_->textureCache()->cache("sample.png", texture);
@@ -42,7 +42,7 @@ void Player::draw(boost::shared_ptr<Frame> frame) {
 	// fetch our source texture from the cache
 	boost::shared_ptr<Texture> source = renderer_->textureCache()->fetch("sample.png");
 	// create a new blit texture render operation
-	boost::shared_ptr<Operation> operation = boost::make_shared<operation::BlitTexture>(source, renderer_->backBuffer());
+	boost::shared_ptr<operation::BlitTexture> operation = boost::make_shared<operation::BlitTexture>(source, renderer_->backBuffer());
 	// push onto frame
 	frame->addOperation(operation);
 }

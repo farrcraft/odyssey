@@ -9,14 +9,16 @@ using namespace odyssey::render;
 
 /**
  **/
-Texture::Texture(SDL_Renderer* renderer, SDL_Surface* surface) {
-	texture_ = SDL_CreateTextureFromSurface(renderer, surface);
+Texture::Texture(boost::shared_ptr<Context> context, SDL_Surface* surface) :
+	context_(context) {
+	texture_ = SDL_CreateTextureFromSurface(context_->handle(), surface);
 }
 
 /**
  **/
-Texture::Texture(SDL_Renderer* renderer, int width, int height) {
-	texture_ = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, width, height);
+Texture::Texture(boost::shared_ptr<Context> context, int width, int height) :
+	context_(context) {
+	texture_ = SDL_CreateTexture(context_->handle(), SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, width, height);
 }
 
 /**

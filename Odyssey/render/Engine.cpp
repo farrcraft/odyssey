@@ -29,7 +29,7 @@ bool Engine::initialize(boost::shared_ptr <odyssey::ui::Window> window) {
 	window_ = window;
 	context_ = boost::make_shared<Context>(window_);
 	scene_ = boost::make_shared<Scene>(context_);
-	backBuffer_ = boost::make_shared<Texture>(context_->handle(), window_->width(), window_->height());
+	backBuffer_ = boost::make_shared<Texture>(context_, window_->width(), window_->height());
 
 	return true;
 }
