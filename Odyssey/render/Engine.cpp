@@ -4,6 +4,7 @@
  **/
 
 #include "Engine.h"
+#include "../engine/Unit.h"
 
 #include <boost/make_shared.hpp>
 
@@ -27,10 +28,17 @@ Engine::~Engine() {
  **/
 bool Engine::initialize(boost::shared_ptr <odyssey::ui::Window> window) {
 	window_ = window;
-	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");
 	context_ = boost::make_shared<Context>(window_);
 	scene_ = boost::make_shared<Scene>(context_);
 	backBuffer_ = boost::make_shared<Texture>(context_, window_->width(), window_->height());
+
+	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");
+
+	// we need to determine the scale factor
+	// use tile dimension * # of tiles on the screen for that dimension = reference screen dimension for the logical size
+	int width = odyssey::engine::unit::tile_width * odyssey::engine::unit::screen_tile_width;
+	int height = odyssey::engine::unit::tile_height * odyssey::engine::unit::screen_tile_height;
+	SDL_RenderSetLogicalSize(context_->handle(), width, height);
 
 	return true;
 }
@@ -50,7 +58,7 @@ void Engine::renderFrame() {
 
 	// flip backbuffer
 	SDL_RenderClear(context_->handle());
-	SDL_RenderCopyEx(context_->handle(), backBuffer_->tex(), NULL, NULL, 0, NULL, SDL_FLIP_VERTICAL);
+	SDL_RenderCopyEx(context_->handle(), backBuffer_->tex(), nullptr, nullptr, 0, nullptr, SDL_FLIP_VERTICAL);
 	SDL_RenderPresent(context_->handle());
 }
 
