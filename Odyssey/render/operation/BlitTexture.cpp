@@ -22,9 +22,13 @@ bool BlitTexture::run(boost::shared_ptr<Context> context) {
 	//Now render to the texture
 	SDL_SetRenderTarget(context->handle(), destination_->tex());
 	SDL_RenderClear(context->handle());
-	SDL_RenderCopy(context->handle(), source_->tex(), NULL, NULL);
+
+	// set the target dimensions to match the source
+	SDL_Rect dest = { .x = 0, .y = 0, .w = source_->width(), .h = source_->height() };
+
+	SDL_RenderCopy(context->handle(), source_->tex(), nullptr, &dest);
 	//Detach the texture
-	SDL_SetRenderTarget(context->handle(), NULL);
+	SDL_SetRenderTarget(context->handle(), nullptr);
 
 	return true;
 }
