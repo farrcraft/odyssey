@@ -10,6 +10,7 @@
 #include "../Texture.h"
 #include "../../asset/Image.h"
 #include "../Engine.h"
+#include "../../engine/Unit.h"
 
 #include <boost/make_shared.hpp>
 
@@ -30,7 +31,10 @@ Player::Player(boost::shared_ptr<Engine> renderer, boost::shared_ptr<odyssey::en
 	boost::shared_ptr<odyssey::render::Surface> surface = boost::make_shared<odyssey::render::Surface>(img->image());
 
 	// create texture from surface
-	boost::shared_ptr<odyssey::render::Texture> texture = boost::make_shared<odyssey::render::Texture>(renderer_->context(), surface->surface());
+	boost::shared_ptr<odyssey::render::Texture> texture = boost::make_shared<odyssey::render::Texture>(renderer_->context(), surface->surface(), img->image()->width(), img->image()->height());
+
+	// we need to scale our texture to our tile size proportions
+	texture->resize(odyssey::engine::unit::tile_width, odyssey::engine::unit::tile_height);
 
 	// put the texture into the cache
 	renderer_->textureCache()->cache("sample.png", texture);

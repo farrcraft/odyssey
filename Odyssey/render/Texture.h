@@ -19,7 +19,7 @@ namespace odyssey::render {
 		/**
 		 * Create a texture from a surface 
 		 **/
-		Texture(boost::shared_ptr<Context> context, SDL_Surface* surface);
+		Texture(boost::shared_ptr<Context> context, SDL_Surface* surface, int width, int height);
 
 		/**
 		 * Create an empty texture with given dimensions 
@@ -32,11 +32,25 @@ namespace odyssey::render {
 
 		/**
 		 **/
+		void resize(int width, int height);
+
+		/**
+		 **/
+		int width() const;
+
+		/**
+		 **/
+		int height() const;
+
+		/**
+		 **/
 		SDL_Texture* tex();
 
 	private:
 		boost::shared_ptr<Context> context_;
 		SDL_Texture* texture_;
+		int width_;
+		int height_;
 	};
 
 };
