@@ -24,7 +24,7 @@ Surface::Surface(boost::shared_ptr<odyssey::image::Image> image) {
 	amask = (image->bpp() == 24) ? 0 : 0xff000000;
 #endif
 	surface_ = SDL_CreateRGBSurfaceFrom(image->data(), image->width(), image->height(), image->bpp(), ((image->bpp() / 8) * image->width()), rmask, gmask, bmask, amask);
-	if (surface_ == NULL) {
+	if (surface_ == nullptr) {
 		std::string msg("Error creating surface from image: ");
 		msg += SDL_GetError();
 		throw std::exception(msg.c_str());
@@ -34,7 +34,7 @@ Surface::Surface(boost::shared_ptr<odyssey::image::Image> image) {
 /**
  **/
 Surface::~Surface() {
-	if (surface_ != NULL) {
+	if (surface_ != nullptr) {
 		SDL_FreeSurface(surface_);
 	}
 }

@@ -64,17 +64,32 @@ bool Engine::run() {
 	}
 
 	bool quit = false;
-	SDL_Event e;
+	SDL_Event event;
 
 	renderEngine_->scene()->setPlayer(boost::make_shared<odyssey::render::renderable::Player>(renderEngine_, player_));
 
 	// Enter main game loop
 	while (!quit) {
 		//Handle events on queue
-		while (SDL_PollEvent(&e) != 0) {
-			//User requests quit
-			if (e.type == SDL_QUIT) {
+		while (SDL_PollEvent(&event) != 0) {
+			switch (event.type) {
+			case SDL_QUIT:
 				quit = true;
+				break;
+			case SDL_WINDOWEVENT:
+				switch (event.window.event) {
+				case SDL_WINDOWEVENT_RESIZED:
+					window_->resize(event.window.data1, event.window.data2);
+					break;
+				case SDL_WINDOWEVENT_SIZE_CHANGED:
+					window_->resize(event.window.data1, event.window.data2);
+					break;
+				case SDL_WINDOWEVENT_FOCUS_LOST:
+					break;
+				case SDL_WINDOWEVENT_FOCUS_GAINED:
+					break;
+				}
+				break;
 			}
 		}
 

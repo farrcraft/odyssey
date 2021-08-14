@@ -35,8 +35,14 @@ namespace odyssey::ui {
 		SDL_Window* sdl();
 
 		/**
-		**/
+		 * Paint a surface onto the window.
+		 * Typically this isn't used and texture rendering is done instead.
+		 **/
 		void paint(SDL_Surface *surface);
+
+		/**
+		 **/
+		void resize(int width, int height);
 
 		/**
 		 **/

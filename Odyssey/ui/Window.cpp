@@ -24,7 +24,7 @@ Window::Window(odyssey::engine::Logger &logger) :
 **/
 bool Window::create(int width, int height) {
 	//Create window
-	window_ = SDL_CreateWindow("Odyssey", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_SHOWN);
+	window_ = SDL_CreateWindow("Odyssey", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_RESIZABLE | SDL_WINDOW_SHOWN);
 	if (window_ == nullptr) {
 		LOG_ERROR(logger_) << "Window could not be created! SDL_Error: " << SDL_GetError();
 		return false;
@@ -66,19 +66,14 @@ int Window::height() const {
 
 /**
  **/
+void Window::resize(int width, int height) {
+	width_ = width;
+	height_ = height;
+}
+
+/**
+ **/
 void Window::paint(SDL_Surface *surface) {
-	// passing in a surface here is just a temporary hack to quickly get an image on the screen
 	SDL_BlitSurface(surface, nullptr, surface_, nullptr);
-
-	/*
-	we need to capture all of the things that we need to paint to the window here
-	do we need to define a frame type?
-	rendering is 2d but maybe there's a z-index that tells us in which order to do painting?
-	what are painting primitives? sprites / surfaces / textures / images
-	what about a paint operation type?
-	*/
-	// Fill the surface white
-	// SDL_FillRect(surface_, NULL, SDL_MapRGB(surface_->format, 0xFF, 0xFF, 0xFF));
-
 	SDL_UpdateWindowSurface(window_);
 }
