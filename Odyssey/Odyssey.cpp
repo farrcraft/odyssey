@@ -4,6 +4,7 @@
  **/
 
 #include <SDL.h>
+#include <SDL_main.h>
 
 #include "Odyssey.h"
 #include "engine/Engine.h"
