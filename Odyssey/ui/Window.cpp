@@ -25,13 +25,14 @@ Window::Window(odyssey::engine::Logger &logger) :
 bool Window::create(int width, int height) {
 	//Create window
 	window_ = SDL_CreateWindow("Odyssey", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_SHOWN);
-	if (window_ == NULL) {
+	if (window_ == nullptr) {
 		LOG_ERROR(logger_) << "Window could not be created! SDL_Error: " << SDL_GetError();
 		return false;
 	}
 	// The surface contained by the window
 	surface_ = SDL_GetWindowSurface(window_);
 
+	// how do we keep these up to date when the window is resized?
 	width_ = width;
 	height_ = height;
 
@@ -42,9 +43,9 @@ bool Window::create(int width, int height) {
  **/
 void Window::destroy() {
 	SDL_FreeSurface(surface_);
-	surface_ = NULL;
+	surface_ = nullptr;
 	SDL_DestroyWindow(window_);
-	window_ = NULL;
+	window_ = nullptr;
 }
 
 /**
@@ -67,7 +68,7 @@ int Window::height() const {
  **/
 void Window::paint(SDL_Surface *surface) {
 	// passing in a surface here is just a temporary hack to quickly get an image on the screen
-	SDL_BlitSurface(surface, NULL, surface_, NULL);
+	SDL_BlitSurface(surface, nullptr, surface_, nullptr);
 
 	/*
 	we need to capture all of the things that we need to paint to the window here
