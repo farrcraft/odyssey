@@ -34,7 +34,8 @@ include_directories(SYSTEM
 	${Boost_INCLUDE_DIRS}
 	"../vendor/libjpeg-turbo-2.1.0"
 	"../vendor/libpng-1.6.37"
-	"../vendor/zlib-1.2.11")
+	"../vendor/zlib-1.2.11"
+	"../vendor/glm-0.9.9.8/glm")
 
 link_directories(
 	${Boost_LIBRARY_DIRS}
