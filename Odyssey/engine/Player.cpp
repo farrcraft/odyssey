@@ -5,14 +5,29 @@
 
 #include "Player.h"
 
-#include "../render/renderable/Player.h"
-
-#include <boost/make_shared.hpp>
-
 using namespace odyssey::engine;
+
+/**
+ **/
+Player::Player() : position_(0, 0) {
+
+}
 
 /**
  **/
 bool Player::tick() {
 	return true;
+}
+
+/**
+ **/
+void Player::move(int x, int y) {
+	position_.x += x;
+	position_.y += y;
+}
+
+/**
+ **/
+glm::ivec2 Player::position() const {
+	return position_;
 }

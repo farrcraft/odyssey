@@ -12,7 +12,7 @@ namespace odyssey::engine {
 		const int tile_height = 64;
 
 		// how many tiles are on a screen
-		const int screen_tile_width = 40;
-		const int screen_tile_height = 24;
+		const int screen_tile_width = 20;
+		const int screen_tile_height = 12;
 	};
 };

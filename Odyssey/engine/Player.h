@@ -7,6 +7,8 @@
 
 #include "Sprite.h"
 
+#include <glm/vec2.hpp>
+
 namespace odyssey::engine {
 	/**
 	 * 
@@ -15,9 +17,22 @@ namespace odyssey::engine {
 	public:
 		/**
 		 **/
+		Player();
+
+		/**
+		 **/
 		bool tick();
 
+		/**
+		 **/
+		void move(int x, int y);
+
+		/**
+		 **/
+		glm::ivec2 position() const;
+
 	private:
+		glm::ivec2 position_;
 		Sprite sprite_;
 	};
 };
