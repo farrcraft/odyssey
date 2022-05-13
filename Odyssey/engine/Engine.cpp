@@ -79,10 +79,10 @@ bool Engine::run() {
 			case SDL_WINDOWEVENT:
 				switch (event.window.event) {
 				case SDL_WINDOWEVENT_RESIZED:
-					window_->resize(event.window.data1, event.window.data2);
+					renderEngine_->resize(event.window.data1, event.window.data2);
 					break;
 				case SDL_WINDOWEVENT_SIZE_CHANGED:
-					window_->resize(event.window.data1, event.window.data2);
+					renderEngine_->resize(event.window.data1, event.window.data2);
 					break;
 				case SDL_WINDOWEVENT_FOCUS_LOST:
 					break;

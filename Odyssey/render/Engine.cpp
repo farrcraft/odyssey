@@ -30,15 +30,16 @@ bool Engine::initialize(boost::shared_ptr <odyssey::ui::Window> window) {
 	window_ = window;
 	context_ = boost::make_shared<Context>(window_);
 	scene_ = boost::make_shared<Scene>(context_);
-	backBuffer_ = boost::make_shared<Texture>(context_, window_->width(), window_->height());
-
-	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");
 
 	// we need to determine the scale factor
 	// use tile dimension * # of tiles on the screen for that dimension = reference screen dimension for the logical size
 	int width = odyssey::engine::unit::tile_width * odyssey::engine::unit::screen_tile_width;
 	int height = odyssey::engine::unit::tile_height * odyssey::engine::unit::screen_tile_height;
 	SDL_RenderSetLogicalSize(context_->handle(), width, height);
+
+	backBuffer_ = boost::make_shared<Texture>(context_, width, height);
+
+	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");
 
 	return true;
 }
@@ -48,6 +49,13 @@ bool Engine::initialize(boost::shared_ptr <odyssey::ui::Window> window) {
 bool Engine::shutdown() {
 
 	return true;
+}
+
+/**
+ **/
+void Engine::resize(int width, int height) {
+	window_->resize(width, height);
+	//backBuffer_ = boost::make_shared<Texture>(context_, width, height);
 }
 
 /**

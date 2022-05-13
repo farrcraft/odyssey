@@ -47,6 +47,11 @@ namespace odyssey::render {
 		/**
 		 **/
 		boost::shared_ptr<TextureCache> textureCache();
+		
+		/**
+		 * Handle a resize event 
+		 **/
+		void resize(int width, int height);
 
 		/**
 		 **/
