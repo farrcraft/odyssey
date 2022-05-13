@@ -7,7 +7,7 @@ cmake_minimum_required (VERSION 3.8)
 # I haven't figured out how to make this work with a relative path
 set(CMAKE_MODULE_PATH "C:/Users/sigsegv/source/repos/Odyssey/Odyssey/cmake")
 
-list(APPEND CMAKE_PREFIX_PATH "C:/Users/sigsegv/source/repos/Odyssey/vendor/boost/boost_1_76_0")
+list(APPEND CMAKE_PREFIX_PATH "C:/Users/sigsegv/source/repos/Odyssey/vendor/boost/boost_1_79_0")
 
 # This path is used by FindSDL2 module. 
 # It will find include and lib folders under this directory.
@@ -36,7 +36,7 @@ include_directories(SYSTEM
 	"../vendor/libpng-1.6.37"
 	"../vendor/zlib-1.2.11"
 	"../vendor/glm-0.9.9.8/glm")
-
+	
 link_directories(
 	${Boost_LIBRARY_DIRS}
 	"../vendor/libjpeg-turbo-2.1.0"
@@ -53,7 +53,7 @@ add_executable (Odyssey WIN32 "Odyssey.cpp" "Odyssey.h" "ui/Window.h"
 "image/reader/Png.h" "image/reader/Png.cpp" "engine/Sprite.h" "render/Texture.h"  "render/Frame.h" "engine/Player.h" "engine/SpriteSheet.h" 
 "render/Engine.h" "render/Engine.cpp" "render/Renderable.h" "engine/Player.cpp" "render/renderable/Player.h" "render/renderable/Player.cpp" "render/Renderable.cpp" 
 "asset/Manager.h" "asset/Asset.h" "asset/Manager.cpp" "asset/Asset.cpp" "asset/Type.h"   "render/Texture.cpp" "asset/Loader.h" "asset/Cache.h" "render/TextureCache.h"
-"render/Surface.h" "render/Surface.cpp" "actor/Actor.h" "render/TextureCache.cpp" "asset/loader/Png.h" "asset/loader/Png.cpp" "asset/Image.h" "asset/Image.cpp" "asset/Loader.cpp" "render/operation/BlitTexture.h" "render/Operation.h" "render/Frame.cpp" "render/operation/BlitTexture.cpp" "render/Context.h" "render/Context.cpp" "render/Scene.h" "render/Scene.cpp" "tile/Tile.h" "tile/Size.h" "engine/Unit.h")
+"render/Surface.h" "render/Surface.cpp" "actor/Actor.h" "render/TextureCache.cpp" "asset/loader/Png.h" "asset/loader/Png.cpp" "asset/Image.h" "asset/Image.cpp" "asset/Loader.cpp" "render/operation/BlitTexture.h" "render/Operation.h" "render/Frame.cpp" "render/operation/BlitTexture.cpp" "render/Context.h" "render/Context.cpp" "render/Scene.h" "render/Scene.cpp" "tile/Tile.h" "tile/Size.h" "engine/Unit.h" "component/Position.h")
 
 # SDL2MAIN_LIBRARY is also specified within SDL2_LIBRARY by the FindSDL2 module.
 # It's needed for Windows specific main function.
