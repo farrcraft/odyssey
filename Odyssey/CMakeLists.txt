@@ -32,6 +32,7 @@ find_package(Boost 1.76.0 REQUIRED COMPONENTS log)
 
 include_directories(SYSTEM
 	${Boost_INCLUDE_DIRS}
+	"../vendor/entt-3.10.1/src"
 	"../vendor/libjpeg-turbo-2.1.0"
 	"../vendor/libpng-1.6.37"
 	"../vendor/zlib-1.2.11"
@@ -53,7 +54,7 @@ add_executable (Odyssey WIN32 "Odyssey.cpp" "Odyssey.h" "ui/Window.h"
 "image/reader/Png.h" "image/reader/Png.cpp" "engine/Sprite.h" "render/Texture.h"  "render/Frame.h" "engine/Player.h" "engine/SpriteSheet.h" 
 "render/Engine.h" "render/Engine.cpp" "render/Renderable.h" "engine/Player.cpp" "render/renderable/Player.h" "render/renderable/Player.cpp" "render/Renderable.cpp" 
 "asset/Manager.h" "asset/Asset.h" "asset/Manager.cpp" "asset/Asset.cpp" "asset/Type.h"   "render/Texture.cpp" "asset/Loader.h" "asset/Cache.h" "render/TextureCache.h"
-"render/Surface.h" "render/Surface.cpp" "actor/Actor.h" "render/TextureCache.cpp" "asset/loader/Png.h" "asset/loader/Png.cpp" "asset/Image.h" "asset/Image.cpp" "asset/Loader.cpp" "render/operation/BlitTexture.h" "render/Operation.h" "render/Frame.cpp" "render/operation/BlitTexture.cpp" "render/Context.h" "render/Context.cpp" "render/Scene.h" "render/Scene.cpp" "tile/Tile.h" "tile/Size.h" "engine/Unit.h" "component/Position.h")
+"render/Surface.h" "render/Surface.cpp" "actor/Actor.h" "render/TextureCache.cpp" "asset/loader/Png.h" "asset/loader/Png.cpp" "asset/Image.h" "asset/Image.cpp" "asset/Loader.cpp" "render/operation/BlitTexture.h" "render/Operation.h" "render/Frame.cpp" "render/operation/BlitTexture.cpp" "render/Context.h" "render/Context.cpp" "render/Scene.h" "render/Scene.cpp" "tile/Tile.h" "tile/Size.h" "engine/Unit.h" "component/Position.h" "component/Position.cpp" "input/Engine.h" "input/Engine.cpp" "input/Device.h" "input/Device.cpp" "input/Mouse.h" "input/Mouse.cpp" "input/Keyboard.h" "input/Keyboard.cpp")
 
 # SDL2MAIN_LIBRARY is also specified within SDL2_LIBRARY by the FindSDL2 module.
 # It's needed for Windows specific main function.
