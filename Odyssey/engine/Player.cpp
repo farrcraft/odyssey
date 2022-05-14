@@ -1,33 +1,18 @@
 /**
  * The Untitled Adventure / Odyssey
- * Copyright (c) 2021 Joshua Farr (josh@farrcraft.com)
+ * Copyright (c) 2022 Joshua Farr (josh@farrcraft.com)
  **/
 
 #include "Player.h"
+#include "../component/Position.h"
 
 using namespace odyssey::engine;
 
 /**
  **/
-Player::Player() : position_(0, 0) {
-
-}
-
-/**
- **/
-bool Player::tick() {
-	return true;
-}
-
-/**
- **/
-void Player::move(int x, int y) {
-	position_.x += x;
-	position_.y += y;
-}
-
-/**
- **/
-glm::ivec2 Player::position() const {
-	return position_;
+Player::Player(entt::registry &registry) {
+	// register a player entity
+	id_ = registry.create();
+	// create the components attached to player entity
+	registry.emplace<odyssey::component::Position>(id_, 0, 0);
 }

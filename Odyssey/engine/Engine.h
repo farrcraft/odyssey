@@ -10,6 +10,7 @@
 
 #include "../asset/Manager.h"
 #include "../config/Bootstrap.h"
+#include "../input/Engine.h"
 #include "../ui/Window.h"
 #include "../render/Engine.h"
 
@@ -19,7 +20,7 @@ namespace odyssey::engine {
 	 * This is the game engine.
 	 * It is responsible for the main game loop
 	 **/
-	class Engine {
+	class Engine final {
 	public:
 		/**
 		 * @return bool
@@ -52,7 +53,10 @@ namespace odyssey::engine {
 		Logger logger_;
 		boost::shared_ptr<Player> player_;
 		boost::shared_ptr<odyssey::render::Engine> renderEngine_;
+		boost::shared_ptr<odyssey::input::Engine> inputEngine_;
 		boost::shared_ptr<odyssey::asset::Manager> assetManager_;
+		entt::registry registry_;
+		entt::dispatcher dispatcher_;
 	};
 
 };

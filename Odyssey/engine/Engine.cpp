@@ -33,7 +33,7 @@ bool Engine::initialize() {
 	
 	assetManager_ = boost::make_shared<odyssey::asset::Manager>(bootstrap_.dataPath());
 
-	player_ = boost::make_shared<Player>();
+	player_ = boost::make_shared<Player>(registry_);
 
 	return true;
 }
@@ -70,7 +70,7 @@ bool Engine::run() {
 
 	// Enter main game loop
 	while (!quit) {
-		//Handle events on queue
+		// Handle events on queue
 		while (SDL_PollEvent(&event) != 0) {
 			switch (event.type) {
 			case SDL_QUIT:
@@ -90,6 +90,8 @@ bool Engine::run() {
 					break;
 				}
 				break;
+			default:
+				inputEngine_->filterEvent(event);
 			}
 		}
 
@@ -109,7 +111,7 @@ bool Engine::run() {
  **/
 bool Engine::tick() {
 
-	player_->tick();
+	// Tick various systems, e.g. Movement System, Collision System, Combat System, etc
 
 	return true;
 }

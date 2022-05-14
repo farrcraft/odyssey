@@ -1,38 +1,26 @@
 /**
  * The Untitled Adventure / Odyssey
- * Copyright (c) 2021 Joshua Farr (josh@farrcraft.com)
+ * Copyright (c) 2022 Joshua Farr (josh@farrcraft.com)
  **/
 
 #pragma once
 
 #include "Sprite.h"
 
-#include <glm/vec2.hpp>
+#include <entt/entt.hpp>
 
 namespace odyssey::engine {
 	/**
 	 * 
 	 **/
-	class Player {
+	class Player final {
 	public:
 		/**
 		 **/
-		Player();
-
-		/**
-		 **/
-		bool tick();
-
-		/**
-		 **/
-		void move(int x, int y);
-
-		/**
-		 **/
-		glm::ivec2 position() const;
+		Player(entt::registry &registry);
 
 	private:
-		glm::ivec2 position_;
+		entt::entity id_;
 		Sprite sprite_;
 	};
 };
