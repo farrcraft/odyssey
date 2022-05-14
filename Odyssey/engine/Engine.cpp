@@ -66,12 +66,17 @@ bool Engine::run() {
 	bool quit = false;
 	SDL_Event event;
 
+	// need to convert this to ECS...
 	renderEngine_->scene()->setPlayer(boost::make_shared<odyssey::render::renderable::Player>(renderEngine_, player_));
 
 	// Enter main game loop
 	while (!quit) {
 		// Handle events on queue
 		while (SDL_PollEvent(&event) != 0) {
+			// check for input device events first
+			if (inputEngine_->filterEvent(event)) {
+				continue;
+			}
 			switch (event.type) {
 			case SDL_QUIT:
 				quit = true;
@@ -90,8 +95,6 @@ bool Engine::run() {
 					break;
 				}
 				break;
-			default:
-				inputEngine_->filterEvent(event);
 			}
 		}
 
