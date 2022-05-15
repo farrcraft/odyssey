@@ -58,6 +58,8 @@ bool Engine::run() {
 		return false;
 	}
 
+	movementSystem_ = boost::make_shared<odyssey::system::Movement>();
+
 	renderEngine_ = boost::make_shared<odyssey::render::Engine>(logger_, assetManager_);
 	if (!renderEngine_->initialize(window_)) {
 		return false;
@@ -103,7 +105,7 @@ bool Engine::run() {
 			return false;
 		}
 
-		// and draw the image on the screen
+		// and draw the frame on the screen
 		renderEngine_->renderFrame();
 	}
 
@@ -113,8 +115,10 @@ bool Engine::run() {
 /**
  **/
 bool Engine::tick() {
-
 	// Tick various systems, e.g. Movement System, Collision System, Combat System, etc
+	if (!movementSystem_->tick()) {
+		return false;
+	}
 
 	return true;
 }

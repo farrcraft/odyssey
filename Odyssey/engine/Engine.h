@@ -13,6 +13,7 @@
 #include "../input/Engine.h"
 #include "../ui/Window.h"
 #include "../render/Engine.h"
+#include "../system/Movement.h"
 
 namespace odyssey::engine {
 
@@ -28,11 +29,13 @@ namespace odyssey::engine {
 		bool initialize();
 
 		/**
+		 * The game loop entry point
 		 * @return bool
 		 **/
 		bool run();
 
 		/**
+		 * Advance the game world time
 		 * @return bool
 		 **/
 		bool tick();
@@ -51,12 +54,18 @@ namespace odyssey::engine {
 		odyssey::config::Bootstrap bootstrap_;
 		boost::shared_ptr<odyssey::ui::Window> window_;
 		Logger logger_;
+
 		boost::shared_ptr<Player> player_;
+
 		boost::shared_ptr<odyssey::render::Engine> renderEngine_;
 		boost::shared_ptr<odyssey::input::Engine> inputEngine_;
+
 		boost::shared_ptr<odyssey::asset::Manager> assetManager_;
+
 		entt::registry registry_;
 		entt::dispatcher dispatcher_;
+
+		boost::shared_ptr<odyssey::system::Movement> movementSystem_;
 	};
 
 };
