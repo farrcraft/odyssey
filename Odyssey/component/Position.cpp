@@ -8,19 +8,16 @@
 using namespace odyssey::component;
 
 Position::Position(const int x, const int y) noexcept
-	: position_(x, y)
-{
+	: position_(x, y) {
 }
 
-Position::Position(Position&& p) noexcept
-{
+Position::Position(Position&& p) noexcept {
 	this->position_ = p.position_;
 }
 
 Position& Position::operator=(Position&& p) noexcept
 {
-	if (this != &p)
-	{
+	if (this != &p) {
 		this->position_ = p.position_;
 	}
 
