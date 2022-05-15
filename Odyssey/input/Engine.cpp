@@ -11,6 +11,8 @@
 
 using namespace odyssey::input;
 
+/**
+ **/
 bool Engine::initialize() {
 	// add keyboard & mouse devices
 	devices_.push_back(boost::make_shared<Keyboard>());
@@ -18,6 +20,8 @@ bool Engine::initialize() {
 	return true;
 }
 
+/**
+ **/
 bool Engine::filterEvent(const SDL_Event& event) {
 	// iterate over devices
 	for (auto it = devices_.begin(); it != devices_.end(); it++) {

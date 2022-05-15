@@ -7,6 +7,8 @@
 
 using namespace odyssey::input;
 
+/**
+ **/
 bool Mouse::handleEvent(const SDL_Event& event)
 {
 	switch (event.type) {

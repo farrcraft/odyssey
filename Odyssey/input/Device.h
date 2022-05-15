@@ -12,6 +12,10 @@ namespace odyssey::input {
 	 **/
 	class Device {
 	public:
+		/**
+		 **/
 		virtual bool handleEvent(const SDL_Event& event) = 0;
+	protected:
+
 	};
 };

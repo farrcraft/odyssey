@@ -7,13 +7,14 @@
 
 #include "Device.h"
 
-#include <SDL.h>
-
 namespace odyssey::input {
 	/**
 	 **/
 	class Mouse : public Device {
 	public:
+		/**
+		 * @return bool true if the event was handled
+		 **/
 		bool handleEvent(const SDL_Event& event);
 	};
 };
