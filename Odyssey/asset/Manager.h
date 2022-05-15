@@ -20,15 +20,15 @@ namespace odyssey::asset {
 	public:
 		/**
 		 **/
-		Manager(const std::string& path);
+		Manager(std::string_view path);
 
 		/**
 		 **/
-		boost::shared_ptr<Asset> load(const std::string& name, asset::Type t);
+		boost::shared_ptr<Asset> load(std::string_view name, asset::Type t);
 
 		/**
 		 **/
-		boost::shared_ptr<Asset> loadTypeFromExt(const std::string& name);
+		boost::shared_ptr<Asset> loadTypeFromExt(std::string_view name);
 
 	protected:
 		/**
