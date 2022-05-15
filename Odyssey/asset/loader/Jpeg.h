@@ -10,7 +10,7 @@
 namespace odyssey::asset::loader {
 	/**
 	 **/
-	class Jpeg : public Loader {
+	class Jpeg final : public Loader {
 	public:
 		/**
 		 **/

@@ -15,18 +15,27 @@
 
 namespace odyssey::asset {
 	/**
+	 * The Asset Manager provides an access point for mapping and loading assets
+	 * within a single path.
 	 **/
-	class Manager {
+	class Manager final {
 	public:
 		/**
 		 **/
 		Manager(std::string_view path);
 
 		/**
+		 * Load an asset
+		 * 
+		 * @param name
+		 * @param type
 		 **/
 		boost::shared_ptr<Asset> load(std::string_view name, asset::Type t);
 
 		/**
+		 * Load an asset, guessing the type from its filename extension.
+		 *
+		 * @param name
 		 **/
 		boost::shared_ptr<Asset> loadTypeFromExt(std::string_view name);
 

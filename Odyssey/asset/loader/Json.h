@@ -10,7 +10,7 @@
 namespace odyssey::asset::loader {
 	/**
 	 **/
-	class Json : public Loader {
+	class Json final : public Loader {
 	public:
 		/**
 		 **/

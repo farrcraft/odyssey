@@ -1,13 +1,13 @@
 /**
  * The Untitled Adventure / Odyssey
- * Copyright (c) 2021 Joshua Farr (josh@farrcraft.com)
+ * Copyright (c) 2022 Joshua Farr (josh@farrcraft.com)
  **/
 
 #pragma once
 
 #include "Type.h"
 
-#include <string>
+#include <string_view>
 
 namespace odyssey::asset {
 	/**

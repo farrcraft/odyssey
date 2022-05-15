@@ -12,6 +12,7 @@
 
 namespace odyssey::asset {
 	/**
+	 * A JSON document asset
 	 **/
 	class Json : public Asset {
 	public:

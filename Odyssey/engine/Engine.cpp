@@ -35,6 +35,25 @@ bool Engine::initialize() {
 
 	player_ = boost::make_shared<Player>(registry_);
 
+	window_ = boost::make_shared<odyssey::ui::Window>(logger_);
+	if (!window_->create(bootstrap_.windowWidth(), bootstrap_.windowHeight())) {
+		return false;
+	}
+
+	// try to load key bindings - need to know status here
+	// need to keep this cached for editing / saving later
+	auto bindings = assetManager_->loadTypeFromExt("bindings.json");
+
+	movementSystem_ = boost::make_shared<odyssey::system::Movement>();
+
+	renderEngine_ = boost::make_shared<odyssey::render::Engine>(logger_, assetManager_);
+	if (!renderEngine_->initialize(window_)) {
+		return false;
+	}
+
+	// need to convert this to ECS...
+	renderEngine_->scene()->setPlayer(boost::make_shared<odyssey::render::renderable::Player>(renderEngine_, player_));
+
 	return true;
 }
 
@@ -53,24 +72,8 @@ bool Engine::shutdown() {
 /**
  **/
 bool Engine::run() {
-	window_ = boost::make_shared<odyssey::ui::Window>(logger_);
-	if (!window_->create(bootstrap_.windowWidth(), bootstrap_.windowHeight())) {
-		return false;
-	}
-
-	movementSystem_ = boost::make_shared<odyssey::system::Movement>();
-
-	renderEngine_ = boost::make_shared<odyssey::render::Engine>(logger_, assetManager_);
-	if (!renderEngine_->initialize(window_)) {
-		return false;
-	}
-
 	bool quit = false;
 	SDL_Event event;
-
-	// need to convert this to ECS...
-	renderEngine_->scene()->setPlayer(boost::make_shared<odyssey::render::renderable::Player>(renderEngine_, player_));
-
 	// Enter main game loop
 	while (!quit) {
 		// Handle events on queue
@@ -99,16 +102,13 @@ bool Engine::run() {
 				break;
 			}
 		}
-
 		// tick the game
 		if (!tick()) {
 			return false;
 		}
-
 		// and draw the frame on the screen
 		renderEngine_->renderFrame();
 	}
-
 	return true;
 }
 
@@ -119,7 +119,6 @@ bool Engine::tick() {
 	if (!movementSystem_->tick()) {
 		return false;
 	}
-
 	return true;
 }
 

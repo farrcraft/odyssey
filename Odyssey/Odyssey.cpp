@@ -1,6 +1,6 @@
 ﻿/**
  * The Untitled Adventure / Odyssey
- * Copyright (c) 2021 Joshua Farr (josh@farrcraft.com)
+ * Copyright (c) 2022 Joshua Farr (josh@farrcraft.com)
  **/
 
 #include <SDL.h>
@@ -17,9 +17,13 @@ int main(int argc, char* argv[]) {
 		return -1;
 	}
 
-	engine.run();
+	const bool ok = engine.run();
 
 	if (!engine.shutdown()) {
+		return -1;
+	}
+
+	if (!ok) {
 		return -1;
 	}
 

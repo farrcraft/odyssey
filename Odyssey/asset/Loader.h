@@ -12,18 +12,28 @@
 
 namespace odyssey::asset {
 	/**
+	 * The base interface for asset loaders
 	 **/
 	class Loader {
 	public:
 		/**
+		 * Default constructor
+		 * 
+		 * @param Type t The asset type this loader provides
 		 **/
 		Loader(Type t);
 
 		/**
+		 * Get the asset type
+		 * 
+		 * @return Type
 		 **/
 		Type type() const;
 
 		/**
+		 * Load an asset
+		 * 
+		 * @param name The name of the asset to be loaded
 		 **/
 		virtual boost::shared_ptr<Asset> load(std::string_view name) = 0;
 

@@ -24,6 +24,10 @@ namespace odyssey::engine {
 	class Engine final {
 	public:
 		/**
+		 * Initialize the engine.
+		 * Initialization includes only the minimal amount of work required to get
+		 * a window displayed on the screen.
+		 * 
 		 * @return bool
 		 **/
 		bool initialize();
