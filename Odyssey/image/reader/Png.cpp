@@ -1,6 +1,6 @@
 /**
  * The Untitled Adventure / Odyssey
- * Copyright (c) 2021 Joshua Farr (josh@farrcraft.com)
+ * Copyright (c) 2022 Joshua Farr (josh@farrcraft.com)
  **/
 
 
@@ -32,12 +32,12 @@ Png::~Png() {
 
 /**
  **/
-boost::shared_ptr<Image> Png::read(const std::string & filename) {
+boost::shared_ptr<Image> Png::read(std::string_view filename) {
 	boost::shared_ptr<Image> empty_ptr;
 
 	// open the file
 	FILE * fp;
-	errno_t err = fopen_s(&fp, filename.c_str(), "rb");
+	errno_t err = fopen_s(&fp, static_cast<std::string>(filename).c_str(), "rb");
 	if (err != 0) {
 		return empty_ptr;
 	}

@@ -1,6 +1,6 @@
 /**
  * The Untitled Adventure / Odyssey
- * Copyright (c) 2021 Joshua Farr (josh@farrcraft.com)
+ * Copyright (c) 2022 Joshua Farr (josh@farrcraft.com)
  **/
 #include "Jpeg.h"
 
@@ -56,7 +56,7 @@ Jpeg::~Jpeg() {
 
 /**
  **/
-boost::shared_ptr<Image> Jpeg::read(const std::string& filename) {
+boost::shared_ptr<Image> Jpeg::read(std::string_view filename) {
 	//BOOST_LOG_TRIVIAL(debug) << "JPEGReader::read - Reading jpeg file [" << filename << "]";
 
 	boost::shared_ptr<Image> empty_ptr;
@@ -65,7 +65,7 @@ boost::shared_ptr<Image> Jpeg::read(const std::string& filename) {
 	// open the file
 	FILE* fp;
 	errno = 0;
-	errno_t err = fopen_s(&fp, filename.c_str(), "rb");
+	errno_t err = fopen_s(&fp, static_cast<std::string>(filename).c_str(), "rb");
 	if (err != 0) {
 		//BOOST_LOG_TRIVIAL(debug) << "JPEGReader::read - failed opening file [" << filename << "] with errno [" << strerror(errno) << "]";
 		return empty_ptr;

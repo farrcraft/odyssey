@@ -86,6 +86,6 @@ int Bootstrap::windowHeight() const {
 
 /**
  **/
-std::string const& Bootstrap::dataPath() const {
+std::string_view Bootstrap::dataPath() const {
     return dataPath_;
 }

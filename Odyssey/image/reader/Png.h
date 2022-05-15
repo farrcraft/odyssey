@@ -1,6 +1,6 @@
 /**
  * The Untitled Adventure / Odyssey
- * Copyright (c) 2021 Joshua Farr (josh@farrcraft.com)
+ * Copyright (c) 2022 Joshua Farr (josh@farrcraft.com)
  **/
 
 #pragma once
@@ -14,7 +14,7 @@ namespace odyssey::image::reader {
 			Png();
 			~Png();
 
-			virtual boost::shared_ptr<Image> read(const std::string & filename);
+			virtual boost::shared_ptr<Image> read(std::string_view filename);
 	};
 
 }; // end namespace

@@ -1,6 +1,6 @@
 /**
  * The Untitled Adventure / Odyssey
- * Copyright (c) 2021 Joshua Farr (josh@farrcraft.com)
+ * Copyright (c) 2022 Joshua Farr (josh@farrcraft.com)
  **/
 
 #pragma once
@@ -18,6 +18,6 @@ namespace odyssey::asset::loader {
 
 		/**
 		 **/
-		boost::shared_ptr<Asset> load(const std::string& name);
+		boost::shared_ptr<Asset> load(std::string_view name);
 	};
 };

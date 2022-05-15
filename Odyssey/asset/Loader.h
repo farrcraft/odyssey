@@ -25,7 +25,7 @@ namespace odyssey::asset {
 
 		/**
 		 **/
-		virtual boost::shared_ptr<Asset> load(const std::string& name) = 0;
+		virtual boost::shared_ptr<Asset> load(std::string_view name) = 0;
 
 	private:
 		Type type_;

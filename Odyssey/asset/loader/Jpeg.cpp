@@ -1,6 +1,6 @@
 /**
  * The Untitled Adventure / Odyssey
- * Copyright (c) 2021 Joshua Farr (josh@farrcraft.com)
+ * Copyright (c) 2022 Joshua Farr (josh@farrcraft.com)
  **/
 
 #include "Jpeg.h"
@@ -20,7 +20,7 @@ Jpeg::Jpeg() : Loader(Type::IMAGE_JPEG) {
 
 /**
  **/
-boost::shared_ptr<Asset> Jpeg::load(const std::string& name) {
+boost::shared_ptr<Asset> Jpeg::load(std::string_view name) {
 	odyssey::image::reader::Jpeg reader;
 	boost::shared_ptr<odyssey::image::Image> image;
 	image = reader.read(name);

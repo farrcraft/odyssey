@@ -7,7 +7,7 @@
 
 using namespace odyssey::asset;
 
-Asset::Asset(const std::string& name, asset::Type t) :
+Asset::Asset(std::string_view name, asset::Type t) :
 	name_(name),
 	type_(t) {
 

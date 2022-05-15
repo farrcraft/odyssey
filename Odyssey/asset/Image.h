@@ -1,6 +1,6 @@
 /**
  * The Untitled Adventure / Odyssey
- * Copyright (c) 2021 Joshua Farr (josh@farrcraft.com)
+ * Copyright (c) 2022 Joshua Farr (josh@farrcraft.com)
  **/
 
 #pragma once
@@ -17,7 +17,7 @@ namespace odyssey::asset {
 	public:
 		/**
 		 **/
-		Image(const std::string& name, Type t, boost::shared_ptr<odyssey::image::Image> img);
+		Image(std::string_view name, Type t, boost::shared_ptr<odyssey::image::Image> img);
 
 		/**
 		 **/

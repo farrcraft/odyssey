@@ -16,10 +16,10 @@ namespace odyssey::asset {
 	public:
 		/**
 		 **/
-		Asset(const std::string& name, Type t);
+		Asset(std::string_view name, Type t);
 
 	protected:
-		std::string name_;
+		std::string_view name_;
 		Type type_;
 	};
 };

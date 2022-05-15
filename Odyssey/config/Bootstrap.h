@@ -1,6 +1,6 @@
 /**
  * The Untitled Adventure / Odyssey
- * Copyright (c) 2021 Joshua Farr (josh@farrcraft.com)
+ * Copyright (c) 2022 Joshua Farr (josh@farrcraft.com)
  **/
 
 #pragma once
@@ -38,7 +38,7 @@ namespace odyssey::config {
 
 		/**
 		 **/
-		std::string const& dataPath() const;
+		std::string_view dataPath() const;
 
 	private:
 		std::string dataPath_;
