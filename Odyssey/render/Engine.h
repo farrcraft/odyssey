@@ -26,7 +26,7 @@ namespace odyssey::render {
 	public:
 		/**
 		 **/
-		Engine(odyssey::engine::Logger& logger, boost::shared_ptr<odyssey::asset::Manager> assetManager);
+		Engine(const boost::shared_ptr<odyssey::engine::Logger> &logger, const boost::shared_ptr<odyssey::asset::Manager> &assetManager);
 		
 		/**
 		 **/
@@ -34,7 +34,7 @@ namespace odyssey::render {
 
 		/**
 		 **/
-		bool initialize(boost::shared_ptr<odyssey::ui::Window> window);
+		bool initialize(const boost::shared_ptr<odyssey::ui::Window> &window);
 		
 		/**
 		 **/
@@ -72,7 +72,7 @@ namespace odyssey::render {
 	private:
 		boost::shared_ptr <odyssey::ui::Window> window_;
 		boost::shared_ptr<Context> context_;
-		odyssey::engine::Logger logger_;
+		boost::shared_ptr<odyssey::engine::Logger> logger_;
 		boost::shared_ptr<Texture> backBuffer_;
 		boost::shared_ptr<odyssey::asset::Manager> assetManager_;
 		std::list<boost::shared_ptr<Renderable>> renderables_;

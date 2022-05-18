@@ -22,7 +22,7 @@ Bootstrap::Bootstrap() :
 
 /**
  **/
-bool Bootstrap::load(odyssey::engine::Logger &logger) {
+bool Bootstrap::load(const boost::shared_ptr<odyssey::engine::Logger> &logger) {
     try {
         boost::filesystem::path path = boost::filesystem::current_path();
         LOG_INFO(logger) << "Looking for bootstrap.json in: " << path;

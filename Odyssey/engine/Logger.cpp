@@ -13,7 +13,7 @@ using namespace odyssey::engine;
 
 /**
  **/
-void Logger::initialize() {
+Logger::Logger() {
 	// Setup logging
 	boost::log::add_file_log(
 		boost::log::keywords::file_name = "odyssey_%N.log",                                        /*< file name pattern >*/
@@ -28,6 +28,8 @@ void Logger::initialize() {
 	boost::log::add_common_attributes();
 }
 
+/**
+ **/
 boost::log::sources::severity_logger< boost::log::trivial::severity_level > &Logger::get() {
 	return logger_;
 }

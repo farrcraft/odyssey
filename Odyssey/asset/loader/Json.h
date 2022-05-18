@@ -14,7 +14,7 @@ namespace odyssey::asset::loader {
 	public:
 		/**
 		 **/
-		Json();
+		Json(const boost::shared_ptr<odyssey::engine::Logger>& logger);
 
 		/**
 		 **/

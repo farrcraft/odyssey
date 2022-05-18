@@ -7,6 +7,7 @@
 
 #include "Asset.h"
 #include "Type.h"
+#include "../engine/Logger.h"
 
 #include <boost/shared_ptr.hpp>
 
@@ -16,13 +17,6 @@ namespace odyssey::asset {
 	 **/
 	class Loader {
 	public:
-		/**
-		 * Default constructor
-		 * 
-		 * @param Type t The asset type this loader provides
-		 **/
-		Loader(Type t);
-
 		/**
 		 * Get the asset type
 		 * 
@@ -36,6 +30,17 @@ namespace odyssey::asset {
 		 * @param name The name of the asset to be loaded
 		 **/
 		virtual boost::shared_ptr<Asset> load(std::string_view name) = 0;
+
+	protected:
+		/**
+		 * Default constructor
+		 *
+		 * @param Type t The asset type this loader provides
+		 **/
+		Loader(Type t, const boost::shared_ptr<odyssey::engine::Logger>& logger);
+
+	protected:
+		boost::shared_ptr<odyssey::engine::Logger> logger_;
 
 	private:
 		Type type_;

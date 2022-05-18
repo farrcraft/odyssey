@@ -17,7 +17,8 @@ using namespace odyssey::engine;
 /**
  **/
 bool Engine::initialize() {
-	logger_.initialize();
+	logger_ = boost::make_shared<Logger>();
+
 	LOG_INFO(logger_) << "Initializing engine...";
 
 	// Initialize SDL
@@ -31,7 +32,7 @@ bool Engine::initialize() {
 		return false;
 	}
 	
-	assetManager_ = boost::make_shared<odyssey::asset::Manager>(bootstrap_.dataPath());
+	assetManager_ = boost::make_shared<odyssey::asset::Manager>(bootstrap_.dataPath(), logger_);
 
 	player_ = boost::make_shared<Player>(registry_);
 
@@ -40,9 +41,9 @@ bool Engine::initialize() {
 		return false;
 	}
 
-	// try to load key bindings - need to know status here
-	// need to keep this cached for editing / saving later
-	auto bindings = assetManager_->loadTypeFromExt("bindings.json");
+	if (!config_.load(assetManager_)) {
+		return false;
+	}
 
 	movementSystem_ = boost::make_shared<odyssey::system::Movement>();
 
@@ -122,8 +123,8 @@ bool Engine::tick() {
 	return true;
 }
 
-/**
- **/
+/*
 Logger& Engine::logger() {
 	return logger_;
 }
+*/

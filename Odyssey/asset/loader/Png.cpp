@@ -15,7 +15,7 @@ using namespace odyssey::asset::loader;
 
 /**
  **/
-Png::Png() : Loader(Type::IMAGE_PNG) {
+Png::Png(const boost::shared_ptr<odyssey::engine::Logger>& logger) : Loader(Type::IMAGE_PNG, logger) {
 
 }
 

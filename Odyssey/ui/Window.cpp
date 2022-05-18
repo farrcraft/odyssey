@@ -11,7 +11,7 @@ using namespace odyssey::ui;
 
 /**
  **/
-Window::Window(odyssey::engine::Logger &logger) : 
+Window::Window(const boost::shared_ptr<odyssey::engine::Logger> &logger) : 
 	window_(nullptr),
 	surface_(nullptr),
 	logger_(logger),

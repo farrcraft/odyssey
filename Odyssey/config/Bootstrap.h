@@ -7,7 +7,7 @@
 
 #include "../engine/Logger.h"
 
-#include <string>
+#include <string_view>
 
 namespace odyssey::config {
 
@@ -26,7 +26,7 @@ namespace odyssey::config {
 		 * @param Logger& logger
 		 * @return bool
 		 **/
-		bool load(odyssey::engine::Logger& logger);
+		bool load(const boost::shared_ptr<odyssey::engine::Logger>& logger);
 
 		/**
 		 **/
@@ -41,7 +41,7 @@ namespace odyssey::config {
 		std::string_view dataPath() const;
 
 	private:
-		std::string dataPath_;
+		std::string_view dataPath_;
 		int windowWidth_;
 		int windowHeight_;
 	};

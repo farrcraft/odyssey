@@ -22,7 +22,7 @@ namespace odyssey::asset {
 	public:
 		/**
 		 **/
-		Manager(std::string_view path);
+		Manager(std::string_view path, const boost::shared_ptr<odyssey::engine::Logger>& logger);
 
 		/**
 		 * Load an asset
@@ -47,6 +47,7 @@ namespace odyssey::asset {
 	private:
 		boost::filesystem::path path_;
 		std::unordered_map<asset::Type, boost::shared_ptr<Loader>> loaders_;
+		boost::shared_ptr<odyssey::engine::Logger> logger_;
 	};
 
 };

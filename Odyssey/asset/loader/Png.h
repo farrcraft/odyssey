@@ -14,7 +14,7 @@ namespace odyssey::asset::loader {
 	public:
 		/**
 		 **/
-		Png();
+		Png(const boost::shared_ptr<odyssey::engine::Logger>& logger);
 
 		/**
 		 **/

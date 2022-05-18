@@ -14,12 +14,13 @@ using namespace odyssey::asset;
 
 /**
  **/
-Manager::Manager(std::string_view path) {
+Manager::Manager(std::string_view path, const boost::shared_ptr<odyssey::engine::Logger> & logger) :
+	logger_(logger) {
 	path_ = static_cast<std::string>(path);
 
-	loaders_[asset::Type::IMAGE_JPEG] = boost::make_shared<odyssey::asset::loader::Jpeg>();
-	loaders_[asset::Type::IMAGE_PNG] = boost::make_shared<odyssey::asset::loader::Png>();
-	loaders_[asset::Type::JSON_DOCUMENT] = boost::make_shared<odyssey::asset::loader::Json>();
+	loaders_[asset::Type::IMAGE_JPEG] = boost::make_shared<odyssey::asset::loader::Jpeg>(logger_);
+	loaders_[asset::Type::IMAGE_PNG] = boost::make_shared<odyssey::asset::loader::Png>(logger_);
+	loaders_[asset::Type::JSON_DOCUMENT] = boost::make_shared<odyssey::asset::loader::Json>(logger_);
 }
 
 /**

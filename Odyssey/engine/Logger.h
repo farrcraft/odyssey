@@ -10,18 +10,18 @@
 #include <boost/log/sources/severity_logger.hpp>
 
 // Convenience macros
-#define LOG_INFO(logger) BOOST_LOG_SEV(logger.get(), boost::log::trivial::info)
-#define LOG_ERROR(logger) BOOST_LOG_SEV(logger.get(), boost::log::trivial::error)
+#define LOG_INFO(logger) BOOST_LOG_SEV(logger->get(), boost::log::trivial::info)
+#define LOG_ERROR(logger) BOOST_LOG_SEV(logger->get(), boost::log::trivial::error)
 
 namespace odyssey::engine {
 
 	/**
 	 **/
-	class Logger {
+	class Logger final {
 	public:
 		/**
 		 **/
-		void initialize();
+		Logger();
 
 		/**
 		 **/

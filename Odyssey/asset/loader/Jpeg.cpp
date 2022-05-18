@@ -14,7 +14,7 @@ using namespace odyssey::asset::loader;
 
 /**
  **/
-Jpeg::Jpeg() : Loader(Type::IMAGE_JPEG) {
+Jpeg::Jpeg(const boost::shared_ptr<odyssey::engine::Logger>& logger) : Loader(Type::IMAGE_JPEG, logger) {
 
 }
 

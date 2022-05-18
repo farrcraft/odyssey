@@ -10,6 +10,7 @@
 
 #include "../asset/Manager.h"
 #include "../config/Bootstrap.h"
+#include "../config/Config.h"
 #include "../input/Engine.h"
 #include "../ui/Window.h"
 #include "../render/Engine.h"
@@ -52,12 +53,13 @@ namespace odyssey::engine {
 		/**
 		 * @return Logger&
 		 **/
-		Logger& logger();
+		//Logger& logger();
 
 	private:
 		odyssey::config::Bootstrap bootstrap_;
+		odyssey::config::Config config_;
 		boost::shared_ptr<odyssey::ui::Window> window_;
-		Logger logger_;
+		boost::shared_ptr<Logger> logger_;
 
 		boost::shared_ptr<Player> player_;
 

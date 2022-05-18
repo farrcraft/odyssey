@@ -18,7 +18,7 @@ using namespace odyssey::asset;
 
 /**
  **/
-loader::Json::Json() : Loader(Type::JSON_DOCUMENT) {
+loader::Json::Json(const boost::shared_ptr<odyssey::engine::Logger>& logger) : Loader(Type::JSON_DOCUMENT, logger) {
 
 }
 
@@ -48,10 +48,9 @@ boost::shared_ptr<Asset> loader::Json::load(std::string_view name) {
         //boost::json::object const& object = document.as_object();
 
         asset = boost::make_shared<odyssey::asset::Json>(name, Type::JSON_DOCUMENT, document.as_object());
-
     }
     catch (std::exception const& e) {
-        // LOG_ERROR(logger) << "Bootstrap caught exception: " << e.what();
+        LOG_ERROR(logger_) << "Bootstrap caught exception: " << e.what();
     }
 
 	return asset;

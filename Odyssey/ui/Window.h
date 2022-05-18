@@ -18,7 +18,7 @@ namespace odyssey::ui {
 		/**
 		 * @param Logger* logger
 		 **/
-		Window(odyssey::engine::Logger& logger);
+		Window(const boost::shared_ptr<odyssey::engine::Logger>& logger);
 
 		/**
 		 * @return bool
@@ -57,7 +57,7 @@ namespace odyssey::ui {
 		SDL_Surface* surface_;
 		int width_;
 		int height_;
-		odyssey::engine::Logger logger_;
+		boost::shared_ptr<odyssey::engine::Logger> logger_;
 	};
 
 };

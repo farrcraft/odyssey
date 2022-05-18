@@ -8,7 +8,6 @@
 #include "Asset.h"
 
 #include <boost/json.hpp>
-#include <boost/shared_ptr.hpp>
 
 namespace odyssey::asset {
 	/**

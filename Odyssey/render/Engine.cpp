@@ -12,7 +12,7 @@ using namespace odyssey::render;
 
 /**
  **/
-Engine::Engine(odyssey::engine::Logger& logger, boost::shared_ptr<odyssey::asset::Manager> assetManager) :
+Engine::Engine(const boost::shared_ptr<odyssey::engine::Logger> &logger, const boost::shared_ptr<odyssey::asset::Manager> &assetManager) :
 	logger_(logger),
 	assetManager_(assetManager) {
 	textureCache_ = boost::make_shared<TextureCache>();
@@ -26,7 +26,7 @@ Engine::~Engine() {
 
 /**
  **/
-bool Engine::initialize(boost::shared_ptr <odyssey::ui::Window> window) {
+bool Engine::initialize(const boost::shared_ptr <odyssey::ui::Window> &window) {
 	window_ = window;
 	context_ = boost::make_shared<Context>(window_);
 	scene_ = boost::make_shared<Scene>(context_);
