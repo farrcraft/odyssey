@@ -21,7 +21,8 @@ namespace odyssey::input {
 	public:
 		/**
 		 **/
-		bool initialize();
+		Engine();
+
 		/**
 		 **/
 		bool filterEvent(const SDL_Event& event);
