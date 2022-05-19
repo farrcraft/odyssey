@@ -47,6 +47,8 @@ bool Engine::initialize() {
 		return false;
 	}
 
+	inputEngine_ = boost::make_shared<odyssey::input::Engine>();
+
 	movementSystem_ = boost::make_shared<odyssey::system::Movement>();
 
 	renderEngine_ = boost::make_shared<odyssey::render::Engine>(logger_, assetManager_);
