@@ -41,7 +41,7 @@ bool Engine::initialize() {
 		return false;
 	}
 
-	if (!config_.load(assetManager_)) {
+	if (!config_.load(assetManager_, logger_)) {
 		return false;
 	}
 

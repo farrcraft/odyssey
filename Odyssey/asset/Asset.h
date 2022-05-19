@@ -18,6 +18,11 @@ namespace odyssey::asset {
 		 **/
 		Asset(std::string_view name, Type t);
 
+		/**
+		 * Default destructor
+		 **/
+		virtual ~Asset() = default;
+
 	protected:
 		std::string_view name_;
 		Type type_;
