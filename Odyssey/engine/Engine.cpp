@@ -21,6 +21,8 @@ bool Engine::initialize() {
 
 	LOG_INFO(logger_) << "Initializing engine...";
 
+	config_ = boost::make_shared<odyssey::config::Config>(logger_);
+
 	// Initialize SDL
 	if (SDL_Init(SDL_INIT_VIDEO) < 0) {
 		LOG_ERROR(logger_) << "SDL could not initialize! SDL_Error: " << SDL_GetError();
@@ -41,7 +43,7 @@ bool Engine::initialize() {
 		return false;
 	}
 
-	if (!config_.load(assetManager_, logger_)) {
+	if (!config_->load(assetManager_)) {
 		return false;
 	}
 

@@ -57,7 +57,7 @@ namespace odyssey::engine {
 
 	private:
 		odyssey::config::Bootstrap bootstrap_;
-		odyssey::config::Config config_;
+		boost::shared_ptr<odyssey::config::Config> config_;
 		boost::shared_ptr<odyssey::ui::Window> window_;
 		boost::shared_ptr<Logger> logger_;
 
