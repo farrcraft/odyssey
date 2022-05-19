@@ -45,7 +45,9 @@ link_directories(
 	"../vendor/zlib-1.2.11")
 
 # This gets us C++17 and newer language features, e.g. nested namespace support - https://docs.microsoft.com/en-us/cpp/error-messages/compiler-errors-1/compiler-error-c2429?view=msvc-160
-add_compile_options("/std:c++latest")
+#add_compile_options("/std:c++latest")
+set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Add source to this project's executable.
 add_executable (Odyssey WIN32 "Odyssey.cpp" "Odyssey.h" "ui/Window.h" 
