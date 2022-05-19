@@ -18,13 +18,16 @@ namespace odyssey::input {
 	public:
 		/**
 		 * Update the state to indicate that a key is currently being pressed
+		 * 
 		 * @return bool
 		 **/
 		bool pressed(std::string_view c) const;
 
 		/**
 		 * Toggle the state of the key
+		 * 
 		 * @param c The key being toggled
+		 * 
 		 * @return bool true if the resulting state is a pressed key
 		 **/
 		bool operator() (std::string_view c);

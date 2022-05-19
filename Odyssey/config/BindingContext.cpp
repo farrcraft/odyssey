@@ -16,5 +16,7 @@ BindingContext::BindingContext(const std::string_view &context) :
 /**
  **/
 bool BindingContext::setBinding(const std::string_view& key, const std::string_view& binding) {
-	return false;
+	bool exists = bindings_.contains(binding);
+	bindings_[key] = binding;
+	return exists;
 }
