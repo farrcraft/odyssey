@@ -58,7 +58,7 @@ add_executable (Odyssey WIN32 "Odyssey.cpp" "Odyssey.h" "ui/Window.h"
 "render/operation/BlitTexture.h" "render/Operation.h" "render/Frame.cpp" "render/operation/BlitTexture.cpp" "render/Context.h" "render/Context.cpp" "render/Scene.h" "render/Scene.cpp" 
 "tile/Tile.h" "tile/Size.h" "engine/Unit.h" "component/Position.h" "component/Position.cpp" "input/Engine.h" "input/Engine.cpp" "input/Device.h" "input/Device.cpp" "input/Mouse.h" "input/Mouse.cpp" 
 "input/Keyboard.h" "input/Keyboard.cpp" "event/KeyUp.h" "config/BindingContext.h" "system/Movement.h"  "input/KeyState.h" "input/KeyState.cpp" "asset/Json.h" "asset/Json.cpp" "asset/loader/Json.h" 
-"asset/loader/Json.cpp" "system/Movement.cpp" "asset/Cache.cpp" "config/BindingContext.cpp" "config/Config.h" "config/Config.cpp")
+"asset/loader/Json.cpp" "system/Movement.cpp" "asset/Cache.cpp" "config/BindingContext.cpp" "config/Config.h" "config/Config.cpp" "event/Key.h" "event/Key.cpp" "event/KeyUp.cpp" "event/KeyDown.h" "event/KeyDown.cpp")
 
 # SDL2MAIN_LIBRARY is also specified within SDL2_LIBRARY by the FindSDL2 module.
 # It's needed for Windows specific main function.

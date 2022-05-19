@@ -5,6 +5,9 @@
 
 #include "Keyboard.h"
 
+#include "../event/KeyDown.h"
+#include "../event/KeyUp.h"
+
 using namespace odyssey::input;
 
 /**
@@ -264,20 +267,23 @@ std::string_view keyEvent(const SDL_Keysym* keysym) {
  **/
 bool Keyboard::handleEvent(const SDL_Event& event) {
 	std::string_view keyName;
+	bool pressed = true;
 	switch (event.type) {
 	case SDL_KEYDOWN:
 		keyName = keyEvent(&event.key.keysym);
 		if (!state_.pressed(keyName)) {
 			state_(keyName);
 		}
-		// dispatcher_.trigger<KeyDown>(evnt);
+		dispatcher_->trigger<odyssey::event::KeyDown>(keyName);
 		break;
 	case SDL_KEYUP:
 		keyName = keyEvent(&event.key.keysym);
 		if (!state_.pressed(keyName)) {
 			state_(keyName);
 		}
+		pressed = false;
 		// dispatcher_.trigger<KeyUp>(evnt);
+		dispatcher_->trigger<odyssey::event::KeyUp>(keyName);
 		break;
 	default:
 		return false;

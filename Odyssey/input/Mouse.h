@@ -13,6 +13,11 @@ namespace odyssey::input {
 	class Mouse : public Device {
 	public:
 		/**
+		 * Inherit base constructor
+		 **/
+		using Device::Device;
+
+		/**
 		 * @return bool true if the event was handled
 		 **/
 		bool handleEvent(const SDL_Event& event);

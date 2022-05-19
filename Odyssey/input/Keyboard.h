@@ -11,8 +11,13 @@
 namespace odyssey::input {
 	/**
 	 **/
-	class Keyboard : public Device {
+	class Keyboard final : public Device {
 	public:
+		/**
+		 * Inherit base constructor
+		 **/
+		using Device::Device;
+
 		/**
 		 * @return bool true if the event was handled
 		 **/

@@ -22,6 +22,7 @@ bool Engine::initialize() {
 	LOG_INFO(logger_) << "Initializing engine...";
 
 	config_ = boost::make_shared<odyssey::config::Config>(logger_);
+	dispatcher_ = boost::make_shared<entt::dispatcher>();
 
 	// Initialize SDL
 	if (SDL_Init(SDL_INIT_VIDEO) < 0) {
@@ -47,7 +48,7 @@ bool Engine::initialize() {
 		return false;
 	}
 
-	inputEngine_ = boost::make_shared<odyssey::input::Engine>();
+	inputEngine_ = boost::make_shared<odyssey::input::Engine>(dispatcher_);
 
 	movementSystem_ = boost::make_shared<odyssey::system::Movement>();
 
@@ -59,6 +60,14 @@ bool Engine::initialize() {
 	// need to convert this to ECS...
 	renderEngine_->scene()->setPlayer(boost::make_shared<odyssey::render::renderable::Player>(renderEngine_, player_));
 
+/*
+	// Assign events to systems.
+	dispatcher_->sink<odyssey::event::KeyDown>().connect<&odyssey::system::Movement::on_key_down>(movementSystem_);
+	dispatcher_->sink<odyssey::event::KeyUp>().connect<&odyssey::system::Movement::on_key_up>(movementSystem_);
+
+	// Assign events to window.
+	dispatcher_->sink<odyssey::event::KeyDown>().connect<&Window::on_key_down>(window_);
+*/
 	return true;
 }
 
@@ -126,9 +135,3 @@ bool Engine::tick() {
 	}
 	return true;
 }
-
-/*
-Logger& Engine::logger() {
-	return logger_;
-}
-*/

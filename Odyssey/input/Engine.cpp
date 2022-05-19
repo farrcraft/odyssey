@@ -13,10 +13,12 @@ using namespace odyssey::input;
 
 /**
  **/
-Engine::Engine() {
+Engine::Engine(const boost::shared_ptr<entt::dispatcher>& dispatcher) : 
+	dispatcher_(dispatcher) {
+
 	// add keyboard & mouse devices
-	devices_.push_back(boost::make_shared<Keyboard>());
-	devices_.push_back(boost::make_shared<Mouse>());
+	devices_.push_back(boost::make_shared<Keyboard>(dispatcher_));
+	devices_.push_back(boost::make_shared<Mouse>(dispatcher_));
 }
 
 /**

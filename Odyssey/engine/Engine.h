@@ -50,11 +50,6 @@ namespace odyssey::engine {
 		 **/
 		bool shutdown();
 
-		/**
-		 * @return Logger&
-		 **/
-		//Logger& logger();
-
 	private:
 		odyssey::config::Bootstrap bootstrap_;
 		boost::shared_ptr<odyssey::config::Config> config_;
@@ -69,7 +64,7 @@ namespace odyssey::engine {
 		boost::shared_ptr<odyssey::asset::Manager> assetManager_;
 
 		entt::registry registry_;
-		entt::dispatcher dispatcher_;
+		boost::shared_ptr<entt::dispatcher> dispatcher_;
 
 		boost::shared_ptr<odyssey::system::Movement> movementSystem_;
 	};

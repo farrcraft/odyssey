@@ -7,6 +7,7 @@
 
 #include <SDL.h>
 #include <boost/shared_ptr.hpp>
+#include <entt/entt.hpp>
 
 #include <vector>
 
@@ -21,7 +22,7 @@ namespace odyssey::input {
 	public:
 		/**
 		 **/
-		Engine();
+		Engine(const boost::shared_ptr<entt::dispatcher> &dispatcher);
 
 		/**
 		 **/
@@ -29,5 +30,6 @@ namespace odyssey::input {
 
 	private:
 		std::vector<boost::shared_ptr<Device> > devices_;
+		boost::shared_ptr<entt::dispatcher> dispatcher_;
 	};
 };

@@ -6,3 +6,8 @@
 #include "Device.h"
 
 using namespace odyssey::input;
+
+Device::Device(const boost::shared_ptr<entt::dispatcher>& dispatcher) : 
+	dispatcher_(dispatcher) {
+
+}
