@@ -17,7 +17,7 @@ using namespace odyssey::asset;
 Manager::Manager(std::string_view path, const boost::shared_ptr<odyssey::engine::Logger> & logger) :
 	logger_(logger) {
 	path_ = static_cast<std::string>(path);
-
+	LOG_INFO(logger_) << "Setting asset manager path to: " << path_.c_str();
 	loaders_[asset::Type::IMAGE_JPEG] = boost::make_shared<odyssey::asset::loader::Jpeg>(logger_);
 	loaders_[asset::Type::IMAGE_PNG] = boost::make_shared<odyssey::asset::loader::Png>(logger_);
 	loaders_[asset::Type::JSON_DOCUMENT] = boost::make_shared<odyssey::asset::loader::Json>(logger_);

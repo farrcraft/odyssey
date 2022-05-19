@@ -64,9 +64,11 @@ bool Config::loadBindings(const boost::shared_ptr<odyssey::asset::Json> &binding
 			}
 			binding->setBinding(input, actionValue.as_string());
 		}
+		LOG_INFO(logger_) << bindingsObj.size() << " bindings loaded";
 
 		contexts_[name] = binding;
 	}
+	LOG_INFO(logger_) << contexts_.size() << " contexts loaded";
 
 	return true;
 }
