@@ -27,7 +27,7 @@ loader::Json::Json(const boost::shared_ptr<odyssey::engine::Logger>& logger) : L
 boost::shared_ptr<Asset> loader::Json::load(std::string_view name) {
     boost::shared_ptr<odyssey::asset::Json> asset;
     try {
-        // LOG_INFO(logger) << "Looking for json asset at: " << name;
+        LOG_INFO(logger_) << "Looking for json asset at: " << name;
         odyssey::config::JsonFile file(static_cast<std::string>(name).c_str(), "r");
         boost::json::stream_parser parser;
         boost::json::error_code err;
