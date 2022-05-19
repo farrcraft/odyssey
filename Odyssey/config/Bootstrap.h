@@ -41,7 +41,7 @@ namespace odyssey::config {
 		std::string_view dataPath() const;
 
 	private:
-		std::string_view dataPath_;
+		std::string dataPath_;
 		int windowWidth_;
 		int windowHeight_;
 	};

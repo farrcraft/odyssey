@@ -50,7 +50,6 @@ bool Bootstrap::load(const boost::shared_ptr<odyssey::engine::Logger> &logger) {
  
         if (boost::filesystem::is_directory(dataPath)) {
             dataPath_ = dataPath.string();
-
             LOG_INFO(logger) << "Found data path: " << dataPath_;
         }
         else {
